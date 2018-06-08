@@ -1,8 +1,7 @@
 ### Heroku Link 
 
-https://vast-oasis-10894.herokuapp.com
+https://merchant-id-users.herokuapp.com
 
-### Implemented MongoDB 
 
 ### API Endpoints 
 
@@ -10,10 +9,16 @@ https://vast-oasis-10894.herokuapp.com
 | ------------ | ------------ | ------------ |
 | GET  | /getDataParametersForApproval/merchantID  |  get info for specfic user according to merchantID  |
 | GET  | /pollData/merchantID  | get info for specfic user according to merchantID  |
-| POST | /shareData  | Post user data and store it in database  |
+| GET  | /pollData2 | Used socket.io for validating with token (alternative option)  |
+| POST | /shareData  | Post user data and store it in database like merchantID, selfie, DOB and name  |
+| POST | /createUser  | Post user data and store it in database like email, password and session token  |
 | DELETE  | /delete/merchantID  | delete a specfic user according to merchantID   |
-| GET  | /getAll  | Display data from all users |
+| GET  | /getAll  | Display data from all users like merchantID, selfie, name |
+| GET  | /getAllUsers  | Display all user info like email, password and session token |
+| DELETE  | /deleteUser/email  | delete a specfic user info according to email  |
+| GET  | /verifyUser  | Pelase refer to the picture below. Insert token in header of Postman  |
 | GET  | /  | Intro page for Heroku  |
+
 
 ### /shareData (POST)
 ![alt text](Pictures/POST.png "Description goes here")
@@ -29,6 +34,23 @@ https://vast-oasis-10894.herokuapp.com
 
 ### /pollData/merchantID (GET)
 ![alt text](Pictures/pollData.png "Description goes here")
+
+### /pollData2  (GET)
+![alt text](Pictures/pollData2.png "Description goes here")
+
+### /getAllUsers  (GET)
+![alt text](Pictures/getAllUsers.png "Description goes here")
+
+### /deleteUser/email  (DELETE)
+![alt text](Pictures/getAllUsers.png "Description goes here")
+
+### /verifyUser (GET)
+![alt text](Pictures/verifyUser.png "Description goes here")
+
+### /createUser (POST)
+![alt text](Pictures/createUser.png "Description goes here")
+
+
 
 
 

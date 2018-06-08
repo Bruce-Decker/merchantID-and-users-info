@@ -16,9 +16,9 @@ var localStorage = require('localStorage')
 var MongoClient = require('mongodb').MongoClient;
 var url = process.env.MONGODB_URI || "mongodb://localhost:27017/";
 //It will be used for local storage 
-mongoose.connect('mongodb://localhost/fastTrack');
+//mongoose.connect('mongodb://localhost/fastTrack');
 //The line below will be used for Heroku deployment
-//mongoose.connect(url);
+mongoose.connect(url);
 
 var db = mongoose.connection;
 

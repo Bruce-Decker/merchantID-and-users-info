@@ -19,6 +19,8 @@ https://merchant-id-users.herokuapp.com
 | GET  | /verifyUser  | Pelase refer to the picture below. Insert token in header of Postman  |
 | GET  | /  | Intro page for Heroku  |
 
+When performing POST request on /shareData and /createUser, if email or merchantID is identifcal to existing ones in the database, the information related to that email or merchantID will be updated. 
+
 
 ### /shareData (POST)
 ![alt text](Pictures/POST.png "Description goes here")

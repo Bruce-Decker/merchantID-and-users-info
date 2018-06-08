@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>﻿
+  <script src = "app.js" type = 'text/javascript'></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+    </ul>
+    <form class="navbar-form navbar-left" action="/action_page.php">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
+</nav>
+  
+<div class="container">
+  
+</div>
+<!--
+<form action = "/shareData" method = "POST">
+-->
+<form>
+
+          <div id = "submit_form" class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                
+                   
+                  
+                    <div class="form-group">
+                           
+                            <label for="employee_field"> Name </label>
+                            <input class="form-control" id="Name" placeholder="Please type in your name" name = "Name">
+                    </div>
+                    <div class="form-group">
+                            <label for="employee_field"> DOB </label>
+                            <input class="form-control" id="DOB" placeholder="Please type in your DOB" name = "DOB">
+                    </div>
+                    <div class="form-group">
+                            <label for="employee_field"> Selfie </label>
+                            <input class="form-control" id="Selfie" placeholder="Selfie string" name = "Selfie">
+                    </div>
+                    <div class="form-group">
+                            <label for="employee_field"> merchantID </label>
+                            <input class="form-control" id="merchantID" placeholder="Please enter merchant ID" name = "merchantID">
+                    </div>
+                    
+                    <input type="submit" class="btn btn-primary" id = "button1"></input>
+                </div>
+              </div>
+      
+  </form>
+<script>
+    $(function() {
+       var socket = io.connect();
+       $('#button1').on('click', function() {
+           var Name = $('#Name').val();
+           var DOB = $('#DOB').val();
+           var Selfie = $('#Selfie').val();
+           var merchantID = $('#merchantID').val();
+           alert(merchantID)
+           var data = {Name: Name, DOB: DOB, Selfie: Selfie, merchantID: merchantID};
+          $.ajax({
+             type: 'POST',
+             url: '/shareData',
+             data: data
+          })
+          socket.emit('send message', data)
+
+           
+       })
+
+    })
+
+</script>
+
+</body>
+</html>

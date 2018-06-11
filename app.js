@@ -79,7 +79,7 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 app.get('/pollData/:merchantID', function(req, res){
 		merchant_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 			if (docs) {
-			res.send(docs)
+			res.send(docs.dataParams)
 		  } else {
 		  	res.send("Not available")
 		  }

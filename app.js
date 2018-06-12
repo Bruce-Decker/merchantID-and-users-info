@@ -4,6 +4,13 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var TokenGenerator = require('uuid-token-generator');
 var tokgen = new TokenGenerator(256, TokenGenerator.BASE62);
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const passport = require('passport');
+
+
+const User = require('./models/User');
+require('./config/passport')(passport);
 
 
 var server = require('http').createServer(app);
@@ -13,12 +20,17 @@ connections = [];
 var localStorage = require('localStorage')
 
 
+const validateRegisterInput = require('./validation/register')
+const validateLoginInput = require('./validation/login')
+const keys = require('./config/keys')
+
+
 var MongoClient = require('mongodb').MongoClient;
-var url = process.env.MONGODB_URI || "mongodb://localhost:27017/";
+//var url = process.env.MONGODB_URI || "mongodb://localhost:27017/";
 //It will be used for local storage 
-//mongoose.connect('mongodb://localhost/fastTrack');
+mongoose.connect('mongodb://localhost/fastTrack');
 //The line below will be used for Heroku deployment
-mongoose.connect(url);
+//mongoose.connect(url);
 
 var db = mongoose.connection;
 
@@ -31,11 +43,13 @@ var merchant_schema = mongoose.Schema({
 	merchantID: String
 });
 
+/*
 var user_schema = mongoose.Schema({
 	email: String,
 	password: String,
-	token: String
+	
 })
+*/
 
 
 var curr_dir = process.cwd()
@@ -45,8 +59,9 @@ app.use(bodyParser.json({limit: '50mb'}));
 
 var merchant_data = mongoose.model("merchantData", merchant_schema);
 
+/*
 var user_data = mongoose.model("userData", user_schema);
-
+*/
 
 
 
@@ -149,7 +164,7 @@ app.post('/createUser', function(req, res) {
 */
 
 app.get('/getAllUsers', function(req, res) {
-	user_data.find({}, function(err, docs) {
+	User.find({}, function(err, docs) {
 		res.send(docs)
 	})
 })
@@ -173,13 +188,40 @@ app.get('/verifyUser', function(req, res) {
 	})
 })
 
+app.post('/createUser', function(req, res) {
+	const { errors, isValid } = validateRegisterInput(req.body);
+
+	if (!isValid) {
+		return res.status(400).json(errors);
+	} 
+
+	User.findOne({ email: req.body.email })
+	    .then(user => {
+	    	if(user) {
+	    		errors.email = 'Email already exists'
+	    		return res.status(400).json(errors)
+	    	} else {
+	    		var email = req.body.email;
+			    var password = req.body.password;
+			    var userData = new User({email: email, password: password})
+			    bcrypt.genSalt(10, (err, salt) => {
+                  bcrypt.hash(userData.password, salt, (err, hash) => {
+                        if (err) throw err;
+                            userData.password = hash;
+                            userData
+                                .save()
+                                .then(user => res.json(user))
+                                .catch(err => console.log(err))
+                  })
+               })
+
+	    	}
 
 
-io.sockets.on('connect', function(socket) {
-var token = socket.handshake.query.t;
-localStorage.setItem('token', token)
-console.log("io token " + token)
-	app.post('/createUser', function(req, res) {
+	 })
+
+
+	/*
 			var email = req.body.email;
 			var password = req.body.password;
 			token = localStorage.getItem('token')
@@ -197,7 +239,7 @@ console.log("io token " + token)
 		  	create_user();
 		  }
 		})
-			console.log("1 token " + token)
+			
 			var userData = {email: email, password: password, token: token}
 
 		function create_user() {
@@ -211,9 +253,63 @@ console.log("io token " + token)
 
 			})
 		}
+		*/
 	
-  })
+})
 
+app.post('/login', (req, res) => {
+    const { errors, isValid } = validateLoginInput(req.body);
+
+    // Check validation
+    if (!isValid) {
+       return res.status(400).json(errors);
+    }
+    const email = req.body.email;
+    const password = req.body.password;
+
+    // Find user by email
+    User.findOne({email})
+       .then(user => {
+           if (!user) {
+               errors.email = 'User not found';
+               return res.status(404).json(errors)
+           }
+
+           // Check Password
+           bcrypt.compare(password, user.password)
+              .then(isMatch => {
+                  if(isMatch) {
+                      //res.json({msg: 'Sucess'})
+                      //User matched
+                      const payload = { id: user.id, name: user.name, avatar: user.avatar  } //Create JWT payload
+                      jwt.sign(
+                          payload, 
+                          keys.secretOrKey, 
+                          { expiresIn: 3600 }, 
+                          (err, token) => {
+                            res.json({
+                                success: true,
+                                token: 'Bearer ' + token
+                            })
+                      });
+                  } else {
+                      errors.password = 'Password incorrect'
+                      return res.status(400).json(errors)
+                  }
+              })
+       })
+})
+
+app.get('/pollData2', passport.authenticate('jwt', {session: false}), function(req, res) {
+     res.json({
+     	 
+     	 email: req.user.email,
+     	 password: req.user.password
+     })
+})
+
+
+/*
 app.get('/pollData2', function(req, res){
 	var token = localStorage.getItem('token')
 	console.log("A " + token)
@@ -226,6 +322,16 @@ app.get('/pollData2', function(req, res){
 		  }
 		})
 	});
+*/
+
+
+io.sockets.on('connect', function(socket) {
+var token = socket.handshake.query.t;
+localStorage.setItem('token', token)
+console.log("io token " + token)
+	
+
+
    //connections.push(socket);
   // console.log(socket.id)
   // console.log("sdfsdf "  + socket.handshake.query.t)

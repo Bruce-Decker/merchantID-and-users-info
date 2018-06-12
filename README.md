@@ -16,7 +16,6 @@ https://merchant-id-users.herokuapp.com
 | GET  | /getAll  | Display data from all users like merchantID, selfie, name |
 | GET  | /getAllUsers  | Display all user info like email, password and session token |
 | DELETE  | /deleteUser/email  | delete a specfic user info according to email  |
-| GET  | /verifyUser  | Pelase refer to the picture below. Insert token in header of Postman  |
 | GET  | /  | Intro page for Heroku  |
 
 When performing POST request on /shareData and /createUser, if email or merchantID is identifcal to existing ones in the database, the information related to that email or merchantID will be updated. 

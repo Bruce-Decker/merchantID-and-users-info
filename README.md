@@ -43,8 +43,7 @@ When performing POST request on /shareData and /createUser, if email or merchant
 ### /deleteUser/email  (DELETE)
 ![alt text](Pictures/getAllUsers.png "Description goes here")
 
-### /verifyUser (GET)
-![alt text](Pictures/verifyUser.png "Description goes here")
+
 
 ### /createUser (POST)
 ![alt text](Pictures/createUser.png "Description goes here")

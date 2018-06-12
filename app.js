@@ -311,10 +311,12 @@ app.get('/pollData2', passport.authenticate('jwt', {session: false}), function(r
      })
 
      */
+     console.log(req.user.merchantID)
     merchant_data.findOne({merchantID: req.user.merchantID}, function(err, docs) {
 			if (docs) {
 			res.send(docs.dataParams)
 		  } else {
+		  	
 		  	res.send("Not available")
 		  }
 		})

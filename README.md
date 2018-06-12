@@ -9,7 +9,7 @@ https://merchant-id-users.herokuapp.com
 | ------------ | ------------ | ------------ |
 | GET  | /getDataParametersForApproval/merchantID  |  get info for specfic user according to merchantID  |
 | GET  | /pollData/merchantID  | get info for specfic user according to merchantID  |
-| GET  | /pollData2 | Used socket.io for validating with token (alternative option)  |
+| GET  | /pollData2 | Used Json Web Token (JWT) for validating with token (alternative option)  |
 | POST | /shareData  | Post user data and store it in database like merchantID, selfie, DOB and name  |
 | POST | /createUser  | Post user data and store it in database like email, password and session token  |
 | DELETE  | /delete/merchantID  | delete a specfic user according to merchantID   |
@@ -37,9 +37,6 @@ When performing POST request on /shareData and /createUser, if email or merchant
 ### /pollData/merchantID (GET)
 ![alt text](Pictures/pollData.png "Description goes here")
 
-### /pollData2  (GET)
-![alt text](Pictures/pollData2.png "Description goes here")
-
 ### /getAllUsers  (GET)
 ![alt text](Pictures/getAllUsers.png "Description goes here")
 
@@ -51,6 +48,16 @@ When performing POST request on /shareData and /createUser, if email or merchant
 
 ### /createUser (POST)
 ![alt text](Pictures/createUser.png "Description goes here")
+
+### /login (POST)
+![alt text](Pictures/login.png "Description goes here")
+
+### /pollData2  (GET)
+
+#### For /pollData2, use the token from login. Copy and paste into Authorization key field as shown in the picture.
+
+![alt text](Pictures/pollData2.png "Description goes here")
+
 
 
 

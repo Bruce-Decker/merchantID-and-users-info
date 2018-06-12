@@ -203,7 +203,8 @@ app.post('/createUser', function(req, res) {
 	    	} else {
 	    		var email = req.body.email;
 			    var password = req.body.password;
-			    var userData = new User({email: email, password: password})
+			    var merchantID = req.body.merchantID;
+			    var userData = new User({email: email, password: password, merchantID: merchantID})
 			    bcrypt.genSalt(10, (err, salt) => {
                   bcrypt.hash(userData.password, salt, (err, hash) => {
                         if (err) throw err;
@@ -301,11 +302,22 @@ app.post('/login', (req, res) => {
 })
 
 app.get('/pollData2', passport.authenticate('jwt', {session: false}), function(req, res) {
+
+/*
      res.json({
      	 
      	 email: req.user.email,
      	 password: req.user.password
      })
+
+     */
+    merchant_data.findOne({merchantID: req.user.merchantID}, function(err, docs) {
+			if (docs) {
+			res.send(docs.dataParams)
+		  } else {
+		  	res.send("Not available")
+		  }
+		})
 })
 
 

@@ -36,9 +36,9 @@ var db = mongoose.connection;
 
 var merchant_schema = mongoose.Schema({
 	dataParams: {
-		Name: String,
-		DOB: String,
-		Selfie: String
+		name: String,
+		age: String,
+		selfie: String
 	},
 	merchantID: String
 });
@@ -112,11 +112,11 @@ app.delete('/delete/:merchantID', function(req, res) {
 
 
 app.post('/shareData', function(req, res) {
-	var Name = req.body.Name;
-	var DOB = req.body.DOB;
-	var Selfie = req.body.Selfie;
+	var name = req.body.name;
+	var age = req.body.age;
+	var selfie = req.body.selfie;
 	var merchantID = req.body.merchantID;
-	var dataParams = {Name: Name, DOB: DOB, Selfie: Selfie}
+	var dataParams = {name: name, age: age, selfie: selfie}
 	var newData = {dataParams: dataParams, merchantID: merchantID}
 
 	merchant_data.findOne({merchantID: merchantID}, function(err, docs) {
@@ -282,7 +282,7 @@ app.post('/login', (req, res) => {
                   if(isMatch) {
                       //res.json({msg: 'Sucess'})
                       //User matched
-                      const payload = { id: user.id, name: user.name, avatar: user.avatar  } //Create JWT payload
+                      const payload = { id: user.id, name: user.name} //Create JWT payload
                       jwt.sign(
                           payload, 
                           keys.secretOrKey, 

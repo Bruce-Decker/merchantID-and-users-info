@@ -133,9 +133,9 @@ function create_merchant() {
 	merchant_data.create(newData, function(err, newlyCreated){
 		if (err) {
               console.log("Error Data");
-              res.send({msg: False});
+              res.send({msg: "False"});
         } else {
-              res.send({msg: True});
+              res.send({msg: "True"});
         }
 	})
  }
@@ -180,9 +180,9 @@ app.get('/verifyUser', function(req, res) {
 	var token = req.headers['token']
 	user_data.findOne({token: token}, function(err, docs) {
 		if (docs) {
-			res.send({msg: True}) 
+			res.send({msg: "True"}) 
 		} else {
-			res.send({msg: False})
+			res.send({msg: "False"})
 		}
        
 	})

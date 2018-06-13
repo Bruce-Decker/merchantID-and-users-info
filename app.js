@@ -102,13 +102,14 @@ app.get('/pollData/:merchantID', function(req, res){
 });
 
 
-
+/*
 app.delete('/delete/:merchantID', function(req, res) {
 	merchant_data.find({merchantID: req.params.merchantID}).remove().exec();
 	merchant_data.find({}, function(err, docs) {
         res.send(docs);
    });
 })
+*/
 
 
 app.post('/shareData', function(req, res) {
@@ -169,12 +170,17 @@ app.get('/getAllUsers', function(req, res) {
 	})
 })
 
+/*
+
 app.delete('/deleteUser/:email', function(req, res) {
 	 user_data.find({email: req.params.email}).remove().exec();
 	 user_data.find({}, function(err, docs) {
 	 	res.send(docs);
 	 })
 })
+*/
+
+/*
 
 app.get('/verifyUser', function(req, res) {
 	var token = req.headers['token']
@@ -187,6 +193,7 @@ app.get('/verifyUser', function(req, res) {
        
 	})
 })
+*/
 
 app.post('/createUser', function(req, res) {
 	const { errors, isValid } = validateRegisterInput(req.body);

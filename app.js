@@ -54,7 +54,7 @@ var user_schema = mongoose.Schema({
 
 var curr_dir = process.cwd()
 app.use(express.static("./"));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit:50000}));
 app.use(bodyParser.json({limit: '50mb', extended: true}));
 
 

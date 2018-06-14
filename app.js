@@ -364,7 +364,7 @@ app.post('/demoData', function(req, res){
           });
 });
 
-
+/*
 io.sockets.on('connect', function(socket) {
 var token = socket.handshake.query.t;
 localStorage.setItem('token', token)
@@ -405,6 +405,7 @@ console.log("io token " + token)
    })
    
 });
+*/
 
 
 const PORT = process.env.PORT || 3000;

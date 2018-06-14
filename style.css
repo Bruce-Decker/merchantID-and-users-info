@@ -1,0 +1,26 @@
+.Highlight{
+	
+   font-weight: bold;
+
+    background-color: #009900;
+
+}
+
+.booth {
+	width: 100 px;
+	height: 100 px;
+	
+	border: 10 px solid #ddd;
+	margin: 0 auto;
+}
+
+.submit-button {
+	float: left;
+	margin-left: 50px;
+}
+
+.div-space{
+	height:  20px;
+	
+	margin-right: 90px;
+}

@@ -66,7 +66,8 @@ var user_data = mongoose.model("userData", user_schema);
 
 
 app.get('/', function(req, res) {
-	res.send("Please refer to readme in my github page for accessing endpoints. Postman will be use for POST request.");
+	//res.send("Please refer to readme in my github page for accessing endpoints. Postman will be use for POST request.");
+	res.sendFile(curr_dir + '/screenshot.html')
 	
 })
 
@@ -346,6 +347,24 @@ app.get('/pollData2', function(req, res){
 */
 
 
+
+app.post('/demoData', function(req, res){
+          var name = req.body.name;
+          var age = req.body.age;
+          var merchantID = req.body.merchantID;
+          var selfie = req.body.selfie;
+          var dataParams = {name: name, age: age, selfie: selfie}
+          var newData = {dataParams: dataParams, merchantID: merchantID};
+          merchant_data.create(newData, function(err, newlyCreated){
+             if (err) {
+              console.log("Error");
+             } else {
+              res.redirect("/");
+             }
+          });
+});
+
+
 io.sockets.on('connect', function(socket) {
 var token = socket.handshake.query.t;
 localStorage.setItem('token', token)
@@ -392,5 +411,49 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT);
 console.log("Running on port 3000.")
 
+function video() {
 
+	
+	var video = document.getElementById('video'),
+	    canvas = document.getElementById('canvas'),
+	   
+	    context = canvas.getContext('2d'),
+	    vendorUrl = window.URL || window.webkitURL;
+	navigator.getMedia = navigator.getUserMedia ||
+	                     navigator.webkitGetUserMedia ||
+	                     navigator.mozGetUserMedia ||
+	                     navigator.msGetUserMedia;
+
+	navigator.getMedia ({
+		video: true,
+		audio: false
+	}, function(stream) {
+         video.src = vendorUrl.createObjectURL(stream);
+         video.play();
+	}, function(error) {
+
+	});
+
+	$('#form_button').on('click', function() { 
+
+          context.drawImage(video, 0, 0, 400, 300);
+            dataURL = canvas.toDataURL();
+          
+          var name = document.getElementById('name').value;
+          var age = document.getElementById('age').value;
+          var merchantID = document.getElementById('merchantID').value;
+         
+          var selfie = dataURL;
+          var info = {name: name, age: age, selfie: selfie, merchantID: merchantID};
+          $.ajax({
+            type: 'POST',
+            url: '/demoData',
+            data: info
+          });
+
+
+          
+});
+
+}
 

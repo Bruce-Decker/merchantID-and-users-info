@@ -360,7 +360,8 @@ app.post('/demoData', function(req, res){
              if (err) {
               console.log("Error");
              } else {
-              res.redirect("/");
+             
+              setTimeout(function(){ res.redirect("/"); }, 4000);
              }
           });
 });

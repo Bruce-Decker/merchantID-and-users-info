@@ -56,7 +56,7 @@ var curr_dir = process.cwd()
 app.use(express.static("./"));
 //app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 //app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({extended: false, type: 'x-www-form-urlencoded'}));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 var merchant_data = mongoose.model("merchantData", merchant_schema);

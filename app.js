@@ -119,7 +119,7 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 	})
 });
 
-app.get('/getConfigurationbyMerchantID', function(req, res) {
+app.post('/getConfigurationbyMerchantID', function(req, res) {
 	var selfie = req.body.selfie;
 
 	//console.log("selfie is " + selfie)

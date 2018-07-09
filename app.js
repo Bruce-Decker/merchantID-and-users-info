@@ -8,6 +8,20 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const passport = require('passport');
 
+const { APNS } = require('apns2')
+ 
+let client = new APNS({
+  team: `5P3B5P74MT`,
+  keyId: `123456`,
+  signingKey: fs.readFileSync(curr_dir + 'aps.p12'),
+  defaultTopic: `com.IDXStudio.FastPassMerchant`
+})
+
+
+
+
+
+
 
 const User = require('./models/User');
 require('./config/passport')(passport);
@@ -43,6 +57,12 @@ var merchant_schema = mongoose.Schema({
 	merchantID: String
 });
 
+var configuration_schema = mongoose.Schema({
+	merchantID: String,
+	selfie: String,
+	indicator: Boolean
+})
+
 /*
 var user_schema = mongoose.Schema({
 	email: String,
@@ -61,6 +81,8 @@ app.use(bodyParser.json({limit: '50mb', extended: true}));
 
 
 var merchant_data = mongoose.model("merchantData", merchant_schema);
+
+var configuration_data = mongoose.model("configData", configuration_schema);
 
 /*
 var user_data = mongoose.model("userData", user_schema);
@@ -94,6 +116,11 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 	  }
 	})
 });
+
+app.get('/getConfigurationbyMerchantID', function(req, res) {
+	var selfie = req.body.selfie;
+	console.log("selfie is " + selfie)
+})
 
 app.get('/pollData/:merchantID', function(req, res){
 		merchant_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {

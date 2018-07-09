@@ -135,11 +135,13 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 });
 
 app.post('/getConfigurationbyMerchantID',  (req, res) => {
+
 	var selfie = req.body.selfie;
 	var merchantID = req.body.merchantID;
 	var indicator = req.body.indicator;
 
-	 try {
+	res.setTimeout(12000, function() {
+		   try {
         var options = {
             cert: path.join(__dirname, 'push_dev.pem'),         // Certificate file path
             passphrase: '123456',                             // A passphrase for the Key file
@@ -164,11 +166,19 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 
 
         process.stdout.write("******* EXECUTED WITHOUT ERRORS************ :");
+        
 
 
     } catch (ex) {
         process.stdout.write("ERROR :"+ex);
     }
+
+
+     res.send(selfie)
+     next();
+	})
+
+	
  /*
 	const { BasicNotification } = require('apns2')
 	let bn = new BasicNotification("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21", merchantID)
@@ -183,7 +193,7 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 	}
 */
 	//console.log("selfie is " + selfie)
-	res.send(selfie)
+	
 })
 
 app.post('/pollData/:merchantID', function(req, res){

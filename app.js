@@ -22,7 +22,7 @@ let client = new APNS({
 let bn = new BasicNotification("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21", "sdfsdfsdfsd")
  
 	try {
-	  client.send(bn)
+	  await client.send(bn)
 	  console.log("test for push BasicNotification")
 	} catch(err) {
 	  console.error("API in getConfigurationbyMerchantID " + err.reason)

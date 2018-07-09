@@ -152,13 +152,14 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
         var apnConnection = new apn.Connection(options);
         var myDevice = new apn.Device("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21");
         var note = new apn.Notification();
-        note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+        //note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
         note.badge = 3;
         note.sound = "ping.aiff";
         note.alert = "You have a new message";
         note.payload = {'msgFrom': 'Alex'};
         note.device = myDevice;
         apnConnection.pushNotification(note);
+        console.log("sdfsdfsfd")
 
 
 

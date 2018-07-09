@@ -7,6 +7,7 @@ var tokgen = new TokenGenerator(256, TokenGenerator.BASE62);
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const passport = require('passport');
+var fs = require('fs')
 
 const { APNS } = require('apns2')
  

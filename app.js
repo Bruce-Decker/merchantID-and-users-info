@@ -140,41 +140,41 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 	var merchantID = req.body.merchantID;
 	var indicator = req.body.indicator;
 
-	res.setTimeout(12000, function() {
-		   try {
-        var options = {
-            cert: path.join(__dirname, 'push_dev.pem'),         // Certificate file path
-            passphrase: '123456',                             // A passphrase for the Key file
-            ca: path.join(__dirname, 'aps_development.cer'),// String or Buffer of CA data to use for the TLS connection
-            production:false,
-            gateway: 'gateway.sandbox.push.apple.com',      // gateway address
-            port: 2195,                                     // gateway port
-            enhanced: true                                  // enable enhanced format
-        };
-        var apnConnection = new apn.Connection(options);
-        var myDevice = new apn.Device("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21");
-        var note = new apn.Notification();
-        //note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-        note.badge = 3;
-        note.sound = "ping.aiff";
-        note.alert = "You have a new message";
-        note.payload = {'msgFrom': 'Alex'};
-        note.device = myDevice;
-        apnConnection.pushNotification(note);
-        console.log("sdfsdfsfd")
+	res.setTimeout(10000, function() {
+			try {
+	        var options = {
+	            cert: path.join(__dirname, 'push_dev.pem'),         // Certificate file path
+	            passphrase: '123456',                             // A passphrase for the Key file
+	            ca: path.join(__dirname, 'aps_development.cer'),// String or Buffer of CA data to use for the TLS connection
+	            production:false,
+	            gateway: 'gateway.sandbox.push.apple.com',      // gateway address
+	            port: 2195,                                     // gateway port
+	            enhanced: true                                  // enable enhanced format
+	        };
+	        var apnConnection = new apn.Connection(options);
+	        var myDevice = new apn.Device("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21");
+	        var note = new apn.Notification();
+	        //note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+	        note.badge = 3;
+	        note.sound = "ping.aiff";
+	        note.alert = "You have a new message";
+	        note.payload = {'msgFrom': 'Alex'};
+	        note.device = myDevice;
+	        apnConnection.pushNotification(note);
+	        console.log("sdfsdfsfd")
 
 
 
-        process.stdout.write("******* EXECUTED WITHOUT ERRORS************ :");
-        
+	        process.stdout.write("******* EXECUTED WITHOUT ERRORS************ :");
+	        
 
 
-    } catch (ex) {
-        process.stdout.write("ERROR :"+ex);
-    }
+	    } catch (ex) {
+	        process.stdout.write("ERROR :"+ex);
+	    }
 
 
-     res.send(selfie)
+	     res.send(selfie)
      
 	})
 

@@ -119,10 +119,11 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 
 app.get('/getConfigurationbyMerchantID', function(req, res) {
 	var selfie = req.body.selfie;
+
 	console.log("selfie is " + selfie)
 })
 
-app.get('/pollData/:merchantID', function(req, res){
+app.post('/pollData/:merchantID', function(req, res){
 		merchant_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 			if (docs) {
 			res.send(docs.dataParams)

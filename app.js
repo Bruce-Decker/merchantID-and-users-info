@@ -134,7 +134,7 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 	})
 });
 
-app.post('/getConfigurationbyMerchantID', async (req, res) => {
+app.post('/getConfigurationbyMerchantID',  (req, res) => {
 	var selfie = req.body.selfie;
 	var merchantID = req.body.merchantID;
 	var indicator = req.body.indicator;

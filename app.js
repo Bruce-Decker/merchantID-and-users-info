@@ -142,6 +142,11 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 
 	res.setTimeout(10000, function() {
 			try {
+				 let options = {
+				 	production: false
+				 }
+
+			/*
 	        var options = {
 	            cert: path.join(__dirname, 'push_dev.pem'),         // Certificate file path
 	            passphrase: '123456',                             // A passphrase for the Key file
@@ -151,6 +156,7 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 	            port: 2195,                                     // gateway port
 	            enhanced: true                                  // enable enhanced format
 	        };
+	        */
 
 	        let apnProvider = new apn.Provider(options);
 	        let deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"

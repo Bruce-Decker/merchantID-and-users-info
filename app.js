@@ -151,6 +151,22 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 	            port: 2195,                                     // gateway port
 	            enhanced: true                                  // enable enhanced format
 	        };
+
+	        let apnProvider = new apn.Provider(options);
+	        let deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
+	        let notification.expiry = Math.floor(Date.now() / 1000) + 24 * 3600;
+	        notification.badge = 2;
+	        notification.sound = "ping.aiff";
+	        notification.alert = "Test Test";
+	        notification.payload = {'messageFrom': 'Hey'};
+	        notification.topic = "com.IDXStudio.FastPassMerchant";
+	        apnProvider.send(notification, deviceToken).then( result => {
+	        	console.log(result);
+	        });
+	        apnProvider.shutdown();
+
+
+	       /*
 	        var apnConnection = new apn.Connection(options);
 	        var myDevice = new apn.Device("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21");
 	        var note = new apn.Notification();
@@ -166,6 +182,7 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 
 
 	        process.stdout.write("******* EXECUTED WITHOUT ERRORS************ :");
+	        */
 	        
 
 

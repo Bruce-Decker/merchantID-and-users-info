@@ -9,13 +9,14 @@ const jwt = require('jsonwebtoken')
 const passport = require('passport');
 var fs = require('fs')
 
+
 var curr_dir = process.cwd()
 const { APNS } = require('apns2')
  
 let client = new APNS({
   team: `5P3B5P74MT`,
-  keyId: `123456`,
-  signingKey: fs.readFileSync(curr_dir + '/push_dev.pem'),
+  keyId: `G25AXZBWJC`,
+  signingKey: fs.readFileSync(curr_dir + '/AuthKey_G25AXZBWJC.p8'),
   defaultTopic: `com.IDXStudio.FastPassMerchant`
 })
 

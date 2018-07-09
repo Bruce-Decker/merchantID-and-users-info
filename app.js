@@ -169,7 +169,7 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 	        apnProvider.send(notification, deviceToken).then( result => {
 	        	console.log(result);
 	        });
-	        apnProvider.shutdown();
+	        //apnProvider.shutdown();
 
 
 	       /*

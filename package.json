@@ -10,6 +10,7 @@
   "author": "Bruce Decker",
   "license": "ISC",
   "dependencies": {
+    "apn": "^2.2.0",
     "apns2": "^5.0.0",
     "async-polling": "^0.2.1",
     "bcryptjs": "^2.4.3",

@@ -175,7 +175,7 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 
 
      res.send(selfie)
-     next();
+     
 	})
 
 	

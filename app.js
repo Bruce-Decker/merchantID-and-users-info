@@ -154,7 +154,7 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 
 	        let apnProvider = new apn.Provider(options);
 	        let deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
-	        let notification.expiry = Math.floor(Date.now() / 1000) + 24 * 3600;
+	        notification.expiry = Math.floor(Date.now() / 1000) + 24 * 3600;
 	        notification.badge = 2;
 	        notification.sound = "ping.aiff";
 	        notification.alert = "Test Test";

@@ -15,7 +15,7 @@ const { APNS } = require('apns2')
 let client = new APNS({
   team: `5P3B5P74MT`,
   keyId: `123456`,
-  signingKey: fs.readFileSync(curr_dir + '/aps.p12'),
+  signingKey: fs.readFileSync(curr_dir + '/push_dev.pem'),
   defaultTopic: `com.IDXStudio.FastPassMerchant`
 })
 

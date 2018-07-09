@@ -119,7 +119,7 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 	})
 });
 
-app.post('/getConfigurationbyMerchantID', function(req, res) {
+app.post('/getConfigurationbyMerchantID', async (req, res) => {
 	var selfie = req.body.selfie;
 	var merchantID = req.body.merchantID;
 	var indicator = req.body.indicator;
@@ -128,15 +128,15 @@ app.post('/getConfigurationbyMerchantID', function(req, res) {
  
 	try {
 	  await client.send(bn)
-	  res.send(selfie)
+	  
 	  console.log("test for push BasicNotification")
 	} catch(err) {
 	  console.error("API in getConfigurationbyMerchantID " + err.reason)
-	  next(err)
+	  
 	}
 
 	//console.log("selfie is " + selfie)
-	//res.send(selfie)
+	res.send(selfie)
 })
 
 app.post('/pollData/:merchantID', function(req, res){

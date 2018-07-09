@@ -127,7 +127,7 @@ app.post('/getConfigurationbyMerchantID', function(req, res) {
 	let bn = new BasicNotification("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21", merchantID)
  
 	try {
-	  client.send(bn)
+	  client.send(bn).catch(err)
 	  console.log("test for push BasicNotification")
 	} catch(err) {
 	  console.error("API in getConfigurationbyMerchantID " + err.reason)

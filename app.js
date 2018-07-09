@@ -126,9 +126,11 @@ app.post('/getConfigurationbyMerchantID', function(req, res) {
 	const { BasicNotification } = require('apns2')
 	let bn = new BasicNotification("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21", merchantID)
  
-	
-	  client.send(bn)
-	
+	try {
+	  await client.send(bn)
+	} catch(err) {
+	  console.error("API in getConfigurationbyMerchantID " + err.reason)
+	}
 
 	//console.log("selfie is " + selfie)
 	res.send(selfie)

@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken')
 const passport = require('passport');
 var fs = require('fs')
 
+var curr_dir = process.cwd()
 const { APNS } = require('apns2')
  
 let client = new APNS({
@@ -21,7 +22,7 @@ let client = new APNS({
 
 
 
-
+//var curr_dir = process.cwd()
 
 
 const User = require('./models/User');
@@ -73,7 +74,7 @@ var user_schema = mongoose.Schema({
 */
 
 
-var curr_dir = process.cwd()
+//var curr_dir = process.cwd()
 app.use(express.static("./"));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit:50000}));
 app.use(bodyParser.json({limit: '50mb', extended: true}));

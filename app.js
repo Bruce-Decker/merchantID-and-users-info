@@ -11,6 +11,11 @@ var fs = require('fs')
 
 
 var curr_dir = process.cwd()
+
+ var apn = require("apn");
+ var path = require('path');
+
+/*
 const { APNS } = require('apns2')
  
 let client = new APNS({
@@ -19,6 +24,7 @@ let client = new APNS({
   signingKey: fs.readFileSync(curr_dir + '/AuthKey_G25AXZBWJC.p8'),
   defaultTopic: `com.IDXStudio.FastPassMerchant`
 })
+*/
 
 
 
@@ -66,6 +72,12 @@ var configuration_schema = mongoose.Schema({
 	indicator: Boolean
 })
 
+var history_schema = mongoose.Schema({
+	location: String,
+	date: String,
+	name: String
+})
+
 /*
 var user_schema = mongoose.Schema({
 	email: String,
@@ -86,6 +98,8 @@ app.use(bodyParser.json({limit: '50mb', extended: true}));
 var merchant_data = mongoose.model("merchantData", merchant_schema);
 
 var configuration_data = mongoose.model("configData", configuration_schema);
+
+var history_data = mongoose.model("historyData", history_schema)
 
 /*
 var user_data = mongoose.model("userData", user_schema);
@@ -124,6 +138,37 @@ app.post('/getConfigurationbyMerchantID', async (req, res) => {
 	var selfie = req.body.selfie;
 	var merchantID = req.body.merchantID;
 	var indicator = req.body.indicator;
+
+	 try {
+        var options = {
+            cert: path.join(__dirname, 'push_dev.pem'),         // Certificate file path
+            passphrase: '123456',                             // A passphrase for the Key file
+            ca: path.join(__dirname, 'aps_development.cer'),// String or Buffer of CA data to use for the TLS connection
+            production:false,
+            gateway: 'gateway.sandbox.push.apple.com',      // gateway address
+            port: 2195,                                     // gateway port
+            enhanced: true                                  // enable enhanced format
+        };
+        var apnConnection = new apn.Connection(options);
+        var myDevice = new apn.Device("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21");
+        var note = new apn.Notification();
+        note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+        note.badge = 3;
+        note.sound = "ping.aiff";
+        note.alert = "You have a new message";
+        note.payload = {'msgFrom': 'Alex'};
+        note.device = myDevice;
+        apnConnection.pushNotification(note);
+
+
+
+        process.stdout.write("******* EXECUTED WITHOUT ERRORS************ :");
+
+
+    } catch (ex) {
+        process.stdout.write("ERROR :"+ex);
+    }
+ /*
 	const { BasicNotification } = require('apns2')
 	let bn = new BasicNotification("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21", merchantID)
  
@@ -135,7 +180,7 @@ app.post('/getConfigurationbyMerchantID', async (req, res) => {
 	  console.error("API in getConfigurationbyMerchantID " + err.reason)
 	  
 	}
-
+*/
 	//console.log("selfie is " + selfie)
 	res.send(selfie)
 })

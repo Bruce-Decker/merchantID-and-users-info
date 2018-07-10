@@ -209,6 +209,7 @@ app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
 		//res.send(docs)
 		result = docs
 		console.log(result.merchantID)
+		console.log(result.Selfie)
    
 		res.send(docs)
 	  } else {

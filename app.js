@@ -138,7 +138,8 @@ var temporary_schema = mongoose.Schema({
 	     Passport_Number: String,
 	     Passport_Image: String,
 	     SSN: String,
-	     Last4SSN: String
+	     Last4SSN: String,
+	     merchantID: String
 })
 /*
 var user_schema = mongoose.Schema({

@@ -138,84 +138,17 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 
 	var selfie = req.body.selfie;
 	var merchantID = req.body.merchantID;
-	var indicator = req.body.indicator;
+	var ageFlag = req.body.ageFlag;
+    var config = {merchantID: merchantID, selfie: selfie, ageFlag: ageFlag}
+    configuration_data.create(config, function(err, newlyCreated) {
+    	if (err) {
+              console.log("Error Data");
+              res.send({msg: "Fale"});
+        } else {
+              res.send({msg: "Sucess"});
+        }
 
-	res.setTimeout(10000, function() {
-			try {
-				 let options = {
-				 	production: false
-				 }
-
-			/*
-	        var options = {
-	            cert: path.join(__dirname, 'push_dev.pem'),         // Certificate file path
-	            passphrase: '123456',                             // A passphrase for the Key file
-	            ca: path.join(__dirname, 'aps_development.cer'),// String or Buffer of CA data to use for the TLS connection
-	            production:false,
-	            gateway: 'gateway.sandbox.push.apple.com',      // gateway address
-	            port: 2195,                                     // gateway port
-	            enhanced: true                                  // enable enhanced format
-	        };
-	        */
-
-	        let apnProvider = new apn.Provider(options);
-	        let deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
-	        notification.expiry = Math.floor(Date.now() / 1000) + 24 * 3600;
-	        notification.badge = 2;
-	        notification.sound = "ping.aiff";
-	        notification.alert = "Test Test";
-	        notification.payload = {'messageFrom': 'Hey'};
-	        notification.topic = "com.IDXStudio.FastPassMerchant";
-	        apnProvider.send(notification, deviceToken).then( result => {
-	        	console.log(result);
-	        });
-	        //apnProvider.shutdown();
-
-
-	       /*
-	        var apnConnection = new apn.Connection(options);
-	        var myDevice = new apn.Device("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21");
-	        var note = new apn.Notification();
-	        //note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
-	        note.badge = 3;
-	        note.sound = "ping.aiff";
-	        note.alert = "You have a new message";
-	        note.payload = {'msgFrom': 'Alex'};
-	        note.device = myDevice;
-	        apnConnection.pushNotification(note);
-	        console.log("sdfsdfsfd")
-
-
-
-	        process.stdout.write("******* EXECUTED WITHOUT ERRORS************ :");
-	        */
-	        
-
-
-	    } catch (ex) {
-	        process.stdout.write("ERROR :"+ex);
-	    }
-
-
-	     res.send(selfie)
-     
-	})
-
-	
- /*
-	const { BasicNotification } = require('apns2')
-	let bn = new BasicNotification("3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21", merchantID)
- 
-	try {
-	  await client.send(bn)
-	  
-	  console.log("test for push BasicNotification")
-	} catch(err) {
-	  console.error("API in getConfigurationbyMerchantID " + err.reason)
-	  
-	}
-*/
-	//console.log("selfie is " + selfie)
+    })
 	
 })
 

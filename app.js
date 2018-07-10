@@ -77,7 +77,7 @@ var merchant_schema = mongoose.Schema({
 var configuration_schema = mongoose.Schema({
 	merchantID: String,
 	selfie: String,
-	indicator: Boolean
+	ageFlag: Boolean
 })
 
 var history_schema = mongoose.Schema({
@@ -86,6 +86,60 @@ var history_schema = mongoose.Schema({
 	name: String
 })
 
+var property_index = {Name: 100, 
+	                  DOB: 101, 
+	                  Age: 102, 
+	                  Sex: 103, 
+	                  Address: 104, 
+	                  Phone: 105, 
+	                  Email: 106,
+	                  Height: 107,
+	                  Weight: 108,
+	                  DL_Number: 109,
+	                  DL_Image: 110,
+	                  Selfie: 111,
+	                  Passport_Number: 112,
+	                  Passport_Image: 113,
+	                  SSN: 114,
+	                  Last4SSN: 115}
+
+var property_schema = mongoose.Schema({
+	100: Boolean,
+	101: Boolean,
+	102: Boolean,
+	103: Boolean,
+    104: Boolean,
+    105: Boolean,
+    106: Boolean,
+    107: Boolean,
+    108: Boolean,
+    109: Boolean,
+    110: Boolean,
+    111: Boolean,
+    112: Boolean,
+    113: Boolean,
+    114: Boolean,
+    115: Boolean
+})
+
+var temporary_schema = mongoose.Schema({
+	     Name: String, 
+	     DOB: String, 
+	     Age: String, 
+	     Sex: String, 
+	     Address: String, 
+	     Phone: String, 
+	     Email: String,
+	     Height: String,
+	     Weight: String,
+	     DL_Number: String,
+	     DL_Image: String,
+	     Selfie: String,
+	     Passport_Number: String,
+	     Passport_Image: String,
+	     SSN: String,
+	     Last4SSN: String
+})
 /*
 var user_schema = mongoose.Schema({
 	email: String,
@@ -108,6 +162,10 @@ var merchant_data = mongoose.model("merchantData", merchant_schema);
 var configuration_data = mongoose.model("configData", configuration_schema);
 
 var history_data = mongoose.model("historyData", history_schema)
+
+var property_data = mongoose.model("propertyData", property_schema)
+
+var temporary_data = mongoose.model("temporaryData", temporary_schema)
 
 /*
 var user_data = mongoose.model("userData", user_schema);
@@ -142,12 +200,24 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 	})
 });
 
+app.get('/getRequiredUserInfo', function(req, res) {
+    
+})
+
+app.post('/createTemporaryUser', function(req, res) {
+	var Name = req.body.Name;
+	var DOB = req.body.DOB;
+	var Age = req.body.Age;
+	console.log("Name is  " + Name)
+    console.log("Age is  " + Age)
+})
+
 app.post('/push', async (req, res) => {
 
 	var note = new apn.Notification();
 	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 	note.badge = 3;
-	note.sound = "ping.aiff";
+	//note.sound = "ping.aiff";
 	note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
 	note.payload = {'messageFrom': 'John Appleseed'};
 	note.topic = "com.IDXStudio.FastPassMerchant";
@@ -155,6 +225,7 @@ app.post('/push', async (req, res) => {
   // see documentation for an explanation of result
        console.log(result)
     });
+    res.send("Message sent")
 	/*
 	    const { BasicNotification } = require('apns2')
 		let bn = new BasicNotification(deviceToken, 'Hello, World')
@@ -168,6 +239,10 @@ app.post('/push', async (req, res) => {
 		res.send("Message sent")
 
 	*/
+})
+
+app.post('/getDeviceToken', function(req, res) {
+	 var deviceToken = req.body.deviceToken;
 })
 
 app.post('/getConfigurationbyMerchantID',  (req, res) => {
@@ -275,7 +350,7 @@ app.post('/createUser', function(req, res) {
 })
 */
 
-app.get('/getAllUsers', function(req, res) {
+app.get('/getAllMerchantUsers', function(req, res) {
 	User.find({}, function(err, docs) {
 		res.send(docs)
 	})
@@ -306,7 +381,8 @@ app.get('/verifyUser', function(req, res) {
 })
 */
 
-app.post('/createUser', function(req, res) {
+
+app.post('/createMerchantUser', function(req, res) {
 	const { errors, isValid } = validateRegisterInput(req.body);
 
 	if (!isValid) {

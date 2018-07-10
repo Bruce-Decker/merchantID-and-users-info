@@ -25,6 +25,18 @@ let client = new APNS({
   defaultTopic: `com.IDXStudio.FastPassMerchant`
 })
 
+var options = {
+  token: {
+    key: curr_dir + '/AuthKey_58GPG57T2C.p8',
+    keyId: "58GPG57T2C",
+    teamId: "5P3B5P74MT"
+  },
+  production: false
+};
+
+var apnProvider = new apn.Provider(options);
+var deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
+
 
 
 
@@ -131,8 +143,20 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 });
 
 app.post('/push', async (req, res) => {
+
+	var note = new apn.Notification();
+	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
+	note.badge = 3;
+	note.sound = "ping.aiff";
+	note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
+	note.payload = {'messageFrom': 'John Appleseed'};
+	note.topic = "com.IDXStudio.FastPassMerchant";
+	apnProvider.send(note, deviceToken).then( (result) => {
+  // see documentation for an explanation of result
+       console.log(result)
+    });
+	/*
 	    const { BasicNotification } = require('apns2')
-	    var deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
 		let bn = new BasicNotification(deviceToken, 'Hello, World')
 		
 		try {
@@ -142,6 +166,8 @@ app.post('/push', async (req, res) => {
 		  console.error("Error is " + err.reason)
 		}
 		res.send("Message sent")
+
+	*/
 })
 
 app.post('/getConfigurationbyMerchantID',  (req, res) => {

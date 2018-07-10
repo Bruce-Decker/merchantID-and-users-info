@@ -191,16 +191,24 @@ app.get('/test', function(req, res) {
 
 
 app.get('/getDataParametersForApproval/:merchantID', function(req, res){
-	merchant_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
+	merchant_data.findOne({merchantID: req.params.merchantID}).toArray(function(err, docs) {
 	  if (docs) {
 		res.send(docs)
+		
 	  } else {
 	  	res.send("Not available")
 	  }
 	})
 });
 
-app.get('/getRequiredUserInfo', function(req, res) {
+app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
+	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
+	  if (docs) {
+		res.send(docs)
+	  } else {
+	  	res.send("Not available")
+	  }
+	})
     
 })
 
@@ -221,6 +229,7 @@ app.post('/createTemporaryUser', function(req, res) {
 	var Passport_Image = req.body.Passport_Image;
 	var SSN = req.body.SSN;
 	var Last4SSN = req.body.Last4SSN;
+	var merchantID = req.body.merchantID
 	var temp_user_data = {
 		Name: Name,
 		DOB: DOB,
@@ -237,7 +246,8 @@ app.post('/createTemporaryUser', function(req, res) {
 		Passport_Number: Passport_Number,
 		Passport_Image: Passport_Image,
 		SSN: SSN,
-		Last4SSN: Last4SSN
+		Last4SSN: Last4SSN,
+		merchantID: merchantID
 	}
 	temporary_data.create(temp_user_data, function(err, newlyCreated) {
 		if (err) {

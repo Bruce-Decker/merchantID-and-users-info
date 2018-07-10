@@ -15,7 +15,7 @@ var curr_dir = process.cwd()
  var apn = require("apn");
  var path = require('path');
 
-/*
+
 const { APNS } = require('apns2')
  
 let client = new APNS({
@@ -24,12 +24,8 @@ let client = new APNS({
   signingKey: fs.readFileSync(curr_dir + '/AuthKey_G25AXZBWJC.p8'),
   defaultTopic: `com.IDXStudio.FastPassMerchant`
 })
-*/
 
 
-
-
-//var curr_dir = process.cwd()
 
 
 const User = require('./models/User');
@@ -105,7 +101,16 @@ var history_data = mongoose.model("historyData", history_schema)
 var user_data = mongoose.model("userData", user_schema);
 */
 
-
+app.post('/push', async (req, res) => {
+	    const { BasicNotification } = require('apns2')
+		let bn = new BasicNotification(deviceToken, 'Hello, World')
+		
+		try {
+		  await client.send(bn)
+		} catch(err) {
+		  console.error(err.reason)
+		}
+})
 
 app.get('/', function(req, res) {
 	//res.send("Please refer to readme in my github page for accessing endpoints. Postman will be use for POST request.");

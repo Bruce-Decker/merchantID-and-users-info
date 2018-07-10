@@ -209,7 +209,7 @@ app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
 	  	var result = JSON.parse(docs)
 	  	console.log("merchantID is " + result.merchantID)
 	  	console.log("selfie is " + result.Selfie)
-		res.send(docs)
+		res.send(result)
 	  } else {
 	  	res.send("Not available")
 	  }

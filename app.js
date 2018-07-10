@@ -203,9 +203,12 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 
 app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
 
-
+    var result
 	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 	  if (docs) {
+		//res.send(docs)
+		result = docs
+		console.log(JSON.stringify(result))
 		res.send(docs)
 	  } else {
 	  	res.send("Not available")

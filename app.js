@@ -149,7 +149,17 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
         }
 
     })
-	
+})
+
+app.get('/getRegularUser/:merchantID', function(req, res) {
+	configuration_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
+		 if (docs) {
+		 	res.send(docs)
+		 } else {
+		 	res.send("Not available")
+		 }
+	})
+
 })
 
 app.post('/pollData/:merchantID', function(req, res){

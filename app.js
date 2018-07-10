@@ -101,17 +101,7 @@ var history_data = mongoose.model("historyData", history_schema)
 var user_data = mongoose.model("userData", user_schema);
 */
 
-app.post('/push', async (req, res) => {
-	    const { BasicNotification } = require('apns2')
-		let bn = new BasicNotification(deviceToken, 'Hello, World')
-		
-		try {
-		  await client.send(bn)
-		  console.log("slfsdfsdfshfoiewuroi98")
-		} catch(err) {
-		  console.error(err.reason)
-		}
-})
+
 
 app.get('/', function(req, res) {
 	//res.send("Please refer to readme in my github page for accessing endpoints. Postman will be use for POST request.");
@@ -139,6 +129,18 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 	  }
 	})
 });
+
+app.post('/push', async (req, res) => {
+	    const { BasicNotification } = require('apns2')
+		let bn = new BasicNotification(deviceToken, 'Hello, World')
+		
+		try {
+		  await client.send(bn)
+		  console.log("slfsdfsdfshfoiewuroi98")
+		} catch(err) {
+		  console.error(err.reason)
+		}
+})
 
 app.post('/getConfigurationbyMerchantID',  (req, res) => {
 

@@ -132,6 +132,7 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 
 app.post('/push', async (req, res) => {
 	    const { BasicNotification } = require('apns2')
+	    var deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
 		let bn = new BasicNotification(deviceToken, 'Hello, World')
 		
 		try {

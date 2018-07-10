@@ -208,8 +208,46 @@ app.post('/createTemporaryUser', function(req, res) {
 	var Name = req.body.Name;
 	var DOB = req.body.DOB;
 	var Age = req.body.Age;
-	console.log("Name is  " + Name)
-    console.log("Age is  " + Age)
+	var Sex = req.body.Sex;
+	var Address = req.body.Address;
+	var Phone = req.body.Phone;
+	var Email = req.body.Email;
+	var Height = req.body.Height;
+	var Weight = req.body.Weight;
+	var DL_Number = req.body.DL_Number;
+	var DL_Image = req.body.DL_Image;
+	var Selfie = req.body.Selfie;
+	var Passport_Number = req.body.Passport_Number;
+	var Passport_Image = req.body.Passport_Image;
+	var SSN = req.body.SSN;
+	var Last4SSN = req.body.Last4SSN;
+	var temp_user_data = {
+		Name: Name,
+		DOB: DOB,
+		Age: Age,
+		Sex: Sex,
+		Address: Address,
+		Phone: Phone,
+		Email: Email,
+		Height: Height,
+		Weight: Weight,
+		DL_Number: DL_Number,
+		DL_Image: DL_Image,
+		Selfie: Selfie,
+		Passport_Number: Passport_Number,
+		Passport_Image: Passport_Image,
+		SSN: SSN,
+		Last4SSN: Last4SSN
+	}
+	temporary_data.create(temp_user_data, function(err, newlyCreated) {
+		if (err) {
+			console.log("Error Data");
+			 res.send({msg: "False"});
+		} else {
+			 res.send({msg: "True"});
+		}
+	})
+
 })
 
 app.post('/push', async (req, res) => {
@@ -398,7 +436,9 @@ app.post('/createMerchantUser', function(req, res) {
 	    		var email = req.body.email;
 			    var password = req.body.password;
 			    var merchantID = req.body.merchantID;
-			    var userData = new User({email: email, password: password, merchantID: merchantID})
+			    var address = req.body.address;
+			    var username = req.body.username;
+			    var userData = new User({email: email, username: username, password: password, merchantID: merchantID, address: address})
 			    bcrypt.genSalt(10, (err, salt) => {
                   bcrypt.hash(userData.password, salt, (err, hash) => {
                         if (err) throw err;

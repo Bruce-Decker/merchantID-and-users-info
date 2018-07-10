@@ -6,6 +6,10 @@ const UserSchema = new Schema({
     	type: String,
     	require: true
     },
+    username: {
+        type: String,
+        require: true
+    },
     password: {
     	type: String,
     	require: true
@@ -13,6 +17,10 @@ const UserSchema = new Schema({
     merchantID: {
     	type: String,
     	require: true
+    },
+    address: {
+        type: String,
+        require: true
     }
 })
 

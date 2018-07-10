@@ -139,8 +139,9 @@ app.post('/push', async (req, res) => {
 		  await client.send(bn)
 		  console.log("slfsdfsdfshfoiewuroi98")
 		} catch(err) {
-		  console.error(err.reason)
+		  console.error("Error is " + err.reason)
 		}
+		res.send("Message sent")
 })
 
 app.post('/getConfigurationbyMerchantID',  (req, res) => {

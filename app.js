@@ -107,6 +107,7 @@ app.post('/push', async (req, res) => {
 		
 		try {
 		  await client.send(bn)
+		  console.log("slfsdfsdfshfoiewuroi98")
 		} catch(err) {
 		  console.error(err.reason)
 		}

@@ -293,7 +293,7 @@ app.post('/push', async (req, res) => {
 
 app.post('/getDeviceToken', function(req, res) {
 	 var deviceToken = req.body.deviceToken;
-	 res.status(200)
+	 res.send("Got device token")
 })
 
 app.post('/getConfigurationbyMerchantID',  (req, res) => {

@@ -206,7 +206,9 @@ app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
 
 	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 	  if (docs) {
-		res.send(docs)
+	  	var result = JSON.parse(docs)
+	  	console.log(result.merchantID)
+		res.send("Good")
 	  } else {
 	  	res.send("Not available")
 	  }

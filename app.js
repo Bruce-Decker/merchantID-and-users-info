@@ -159,6 +159,7 @@ app.get('/getRegularUser/:merchantID', function(req, res) {
 		 	res.send("Not available")
 		 }
 	})
+	 configuration_data.find({merchantID: req.params.merchantID}).remove().exec();
 
 })
 

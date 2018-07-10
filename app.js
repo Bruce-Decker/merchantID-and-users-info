@@ -202,15 +202,7 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 
 app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
 
-	temporary_data.findOne({merchantID: req.params.merchantID}).toArray(function(error, docs) {
-		 if (docs) {
-		res.send(docs)
-	  } else {
-	  	res.send("Not available")
-	  }
-	})
 
-/*
 	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 	  if (docs) {
 		res.send(docs)
@@ -218,7 +210,6 @@ app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
 	  	res.send("Not available")
 	  }
 	})
-	*/
     
 })
 

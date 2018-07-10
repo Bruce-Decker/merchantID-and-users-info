@@ -194,6 +194,9 @@ app.get('/test', function(req, res) {
 app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 	merchant_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 	  if (docs) {
+	  	var result = JSON.parse(docs)
+	  	console.log("merchantID is " + result.merchantID)
+	  	console.log("selfie is " + result.Selfie)
 		res.send(docs)
 	  } else {
 	  	res.send("Not available")

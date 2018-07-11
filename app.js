@@ -8,7 +8,6 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const passport = require('passport');
 var fs = require('fs')
-var uuidv1 = require('uuid/v1');
 
 
 var curr_dir = process.cwd()
@@ -37,7 +36,7 @@ var options = {
 
 var apnProvider = new apn.Provider(options);
 var deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
-//var deviceToken = "58b499eca2d23530abe2325e57031ae6a82ba89b73f265a8f73bc87509a82236"
+
 
 
 
@@ -339,8 +338,6 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 
 })
 
-
-
 app.post('/createBarData', function(req, res) {
 	 var merchantID = req.body.merchantID;
 	 var selfie = req.body.selfie;
@@ -368,13 +365,11 @@ app.get('/getBarData/:merchantID', function(req, res) {
 
 app.post('/push', async (req, res) => {
 
-	var tempID = uuidv1();
-  
 	var note = new apn.Notification();
 	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 	note.badge = 3;
-	note.sound = "ping.aiff";
-	note.alert = "Your temporary id is " + tempID;
+	//note.sound = "ping.aiff";
+	note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
 	note.payload = {'messageFrom': 'John Appleseed'};
 	note.topic = "com.IDXStudio.FastPassMerchant";
 	apnProvider.send(note, deviceToken).then( (result) => {

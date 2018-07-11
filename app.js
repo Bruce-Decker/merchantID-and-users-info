@@ -276,7 +276,6 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 		 if (docs) {
 		 	if (docs.Name) {
-		 		console.log("ssdf89s")
 		 		array.push("100")
 		 	}
 		 	if (docs.DOB) {
@@ -284,7 +283,7 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 		 	}
 		 	json_Object = JSON.stringify(array)
 
-		 	res.send(json_Object)
+		 	res.send({json_Object})
 		 } else {
 		 	res.send("Not available")
 		 }

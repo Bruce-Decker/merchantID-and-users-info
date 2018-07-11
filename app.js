@@ -271,7 +271,7 @@ app.post('/createTemporaryUser', function(req, res) {
 })
 
 app.get('/getMerchantConfig/:merchantID', function(req, res) {
-	var array
+	var array = []
 	var json_Object
 	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 		 if (docs) {

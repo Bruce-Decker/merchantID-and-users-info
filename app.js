@@ -368,13 +368,13 @@ app.get('/getBarData/:merchantID', function(req, res) {
 
 app.post('/push', async (req, res) => {
 
-	
-
+	var tempID = uuidv1();
+  
 	var note = new apn.Notification();
 	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 	note.badge = 3;
 	note.sound = "ping.aiff";
-	note.alert = "\uD83D\uDCE7 \u2709 You have a new message";
+	note.alert = "\uD83D\uDCE7 \u2709 You have a new message" + tempID;
 	note.payload = {'messageFrom': 'John Appleseed'};
 	note.topic = "com.IDXStudio.FastPassMerchant";
 	apnProvider.send(note, deviceToken).then( (result) => {

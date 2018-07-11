@@ -353,6 +353,16 @@ app.post('/createBarData', function(req, res) {
 
 })
 
+app.get('/getBarData/:merchantID', function(req, res) {
+	bar_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
+		if (docs) {
+			res.send(docs)
+		} else {
+			res.send("Not available")
+		}
+	})
+})
+
 app.post('/push', async (req, res) => {
 
 	var note = new apn.Notification();

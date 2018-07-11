@@ -364,7 +364,7 @@ app.get('/getBarData/:merchantID', function(req, res) {
 })
 
 app.post('/push', async (req, res) => {
-
+/*
 	var note = new apn.Notification();
 	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 	note.badge = 3;
@@ -377,7 +377,10 @@ app.post('/push', async (req, res) => {
        console.log(result)
     });
     res.send("Message sent")
-	/*
+*/
+
+
+	
 	    const { BasicNotification } = require('apns2')
 		let bn = new BasicNotification(deviceToken, 'Hello, World')
 		
@@ -389,7 +392,7 @@ app.post('/push', async (req, res) => {
 		}
 		res.send("Message sent")
 
-	*/
+	
 })
 
 app.post('/getDeviceToken', function(req, res) {

@@ -22,7 +22,7 @@ const { APNS } = require('apns2')
 let client = new APNS({
   team: `5P3B5P74MT`,
   keyId: `58GPG57T2C`,
-  signingKey: fs.readFileSync(curr_dir + '/AuthKey_58GPG57T2C.p8'),
+  signingKey: curr_dir + '/AuthKey_58GPG57T2C.p8',
   defaultTopic: `com.IDXStudio.FastPassMerchant`
 })
 
@@ -368,6 +368,7 @@ app.get('/getBarData/:merchantID', function(req, res) {
 
 app.post('/push', async (req, res) => {
 
+/*
 	var tempID = uuidv1();
   
 	var note = new apn.Notification();
@@ -382,7 +383,10 @@ app.post('/push', async (req, res) => {
        console.log(result)
     });
     res.send("Message sent")
-	/*
+   */
+
+
+	
 	    const { BasicNotification } = require('apns2')
 		let bn = new BasicNotification(deviceToken, 'Hello, World')
 		
@@ -394,7 +398,7 @@ app.post('/push', async (req, res) => {
 		}
 		res.send("Message sent")
 
-	*/
+	
 })
 
 app.post('/getDeviceToken', function(req, res) {

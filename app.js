@@ -384,10 +384,7 @@ app.post('/push', async (req, res) => {
 	   const { BasicNotification } = require('apns2')
  
 let bn = new BasicNotification(deviceToken, 'Hello, World', {
-  badge: 4,
-  data: {
-    userId: user.getUserId
-  }
+  badge: 4
 })
  
 try {

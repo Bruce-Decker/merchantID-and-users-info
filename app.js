@@ -345,9 +345,9 @@ app.post('/createBarData', function(req, res) {
 	 var barData = {merchantID: merchantID, selfie: selfie, DOB: DOB}
 	 bar_data.create(barData, function(err, newlyCreated) {
 	 	if (err) {
-	 		res.send({msg: "Success"})
-	 	} else {
 	 		res.send({msg: "Fail"})
+	 	} else {
+	 		res.send({msg: "Sucess"})
 	 	}
 	 })
 

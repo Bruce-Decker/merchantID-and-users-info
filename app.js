@@ -271,12 +271,20 @@ app.post('/createTemporaryUser', function(req, res) {
 })
 
 app.get('/getMerchantConfig/:merchantID', function(req, res) {
+	var array
+	var json_Object
 	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 		 if (docs) {
 		 	if (docs.Name) {
 		 		console.log("ssdf89s")
+		 		array.push("100")
 		 	}
-		 	res.send(docs)
+		 	if (docs.DOB) {
+		 		array.push("101")
+		 	}
+		 	json_Object = JSON.stringify(array)
+
+		 	res.send(json_Object)
 		 } else {
 		 	res.send("Not available")
 		 }

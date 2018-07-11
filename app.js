@@ -141,6 +141,12 @@ var temporary_schema = mongoose.Schema({
 	     Last4SSN: String,
 	     merchantID: String
 })
+
+var bar_schema = mongoose.Schema({
+	merchantID: String,
+	selfie: String,
+	DOB: String
+})
 /*
 var user_schema = mongoose.Schema({
 	email: String,
@@ -167,6 +173,8 @@ var history_data = mongoose.model("historyData", history_schema)
 var property_data = mongoose.model("propertyData", property_schema)
 
 var temporary_data = mongoose.model("temporaryData", temporary_schema)
+
+var bar_data = mongoose.model("barData", bar_schema)
 
 /*
 var user_data = mongoose.model("userData", user_schema);
@@ -320,27 +328,6 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 		 	if (docs.Last4SSN) {
 		 		array.push("115")
 		 	}
-
-
-		 	/*
-		 	Name: Name,
-		DOB: DOB,
-		Age: Age,
-		Sex: Sex,
-		Address: Address,
-		Phone: Phone,
-		Email: Email,
-		Height: Height,
-		Weight: Weight,
-		DL_Number: DL_Number,
-		DL_Image: DL_Image,
-		Selfie: Selfie,
-		Passport_Number: Passport_Number,
-		Passport_Image: Passport_Image,
-		SSN: SSN,
-		Last4SSN: Last4SSN,
-		merchantID: merchantID
-		 */
 		 	json_Object = JSON.stringify(array)
 
 		 	res.send(json_Object)
@@ -382,7 +369,7 @@ app.post('/push', async (req, res) => {
 
 app.post('/getDeviceToken', function(req, res) {
 	 var deviceToken = req.body.deviceToken;
-	 res.send("Got device token")
+	 res.send({"msg": "Got device token"})
 })
 
 

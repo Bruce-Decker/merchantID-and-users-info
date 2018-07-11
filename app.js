@@ -36,8 +36,8 @@ var options = {
 };
 
 var apnProvider = new apn.Provider(options);
-//var deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
-var deviceToken = "58b499eca2d23530abe2325e57031ae6a82ba89b73f265a8f73bc87509a82236"
+var deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
+//var deviceToken = "58b499eca2d23530abe2325e57031ae6a82ba89b73f265a8f73bc87509a82236"
 
 
 
@@ -368,7 +368,7 @@ app.get('/getBarData/:merchantID', function(req, res) {
 
 app.post('/push', async (req, res) => {
 
-/*
+
 	var tempID = uuidv1();
   
 	var note = new apn.Notification();
@@ -383,10 +383,10 @@ app.post('/push', async (req, res) => {
        console.log(result)
     });
     res.send("Message sent")
-   */
+   
 
 
-	
+	/*
 	    const { BasicNotification } = require('apns2')
 		let bn = new BasicNotification(deviceToken, 'Hello, World')
 		
@@ -397,6 +397,7 @@ app.post('/push', async (req, res) => {
 		  console.error("Error is " + err.reason)
 		}
 		res.send("Message sent")
+		*/
 
 	
 })

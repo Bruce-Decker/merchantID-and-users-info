@@ -330,7 +330,7 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 		 	}
 		 	json_Object = JSON.stringify(array)
 
-		 	res.send(json_Object)
+		 	res.send({json_Object, docs.Name})
 		 } else {
 		 	res.send("Not available")
 		 }

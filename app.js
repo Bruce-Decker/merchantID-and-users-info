@@ -338,6 +338,21 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 
 })
 
+app.post('/createBarData', function(req, res) {
+	 var merchantID = req.body.merchantID;
+	 var selfie = req.body.selfie;
+	 var DOB = req.body.DOB;
+	 var barData = {merchantID: merchantID, selfie: selfie, DOB: DOB}
+	 bar_data.create(barData, function(err, newlyCreated) {
+	 	if (err) {
+	 		res.send({msg: "Success"})
+	 	} else {
+	 		res.send({msg: "Fail"})
+	 	}
+	 })
+
+})
+
 app.post('/push', async (req, res) => {
 
 	var note = new apn.Notification();

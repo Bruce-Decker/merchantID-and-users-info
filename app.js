@@ -275,13 +275,72 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 	var json_Object
 	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 		 if (docs) {
-		 	console.log(docs[0])
 		 	if (docs.Name) {
 		 		array.push("100")
 		 	}
 		 	if (docs.DOB) {
 		 		array.push("101")
 		 	}
+		 	if (docs.Age) {
+		 		array.push("102")
+		 	}
+		 	if (docs.Address) {
+		 		array.push("103")
+		 	}
+		 	if (docs.Phone) {
+		 		array.push("104")
+		 	}
+		 	if (docs.Email) {
+		 		array.push("105")
+		 	}
+		 	if (docs.Height) {
+		 		array.push("106")
+		 	}
+		 	if (docs.Weight) {
+		 		array.push("107")
+		 	}
+		 	if (docs.DL_Number) {
+		 		array.push("108")
+		 	}
+		 	if (docs.DL_Image) {
+		 		array.push("109")
+		 	}
+		 	if (docs.Selfie) {
+                array.push("110")
+		 	}
+		 	if (docs.Passport_Number) {
+		 		array.push("111")
+		 	}
+		 	if (docs.Passport_Image) {
+		 		array.push("113")
+		 	}
+		 	if (docs.SSN) {
+		 		array.push("114")
+		 	}
+		 	if (docs.Last4SSN) {
+		 		array.push("115")
+		 	}
+
+
+		 	/*
+		 	Name: Name,
+		DOB: DOB,
+		Age: Age,
+		Sex: Sex,
+		Address: Address,
+		Phone: Phone,
+		Email: Email,
+		Height: Height,
+		Weight: Weight,
+		DL_Number: DL_Number,
+		DL_Image: DL_Image,
+		Selfie: Selfie,
+		Passport_Number: Passport_Number,
+		Passport_Image: Passport_Image,
+		SSN: SSN,
+		Last4SSN: Last4SSN,
+		merchantID: merchantID
+		 */
 		 	json_Object = JSON.stringify(array)
 
 		 	res.send(json_Object)

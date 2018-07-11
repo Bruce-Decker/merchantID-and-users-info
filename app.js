@@ -201,6 +201,7 @@ app.get('/getDataParametersForApproval/:merchantID', function(req, res){
 	})
 });
 
+/*
 app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
 
     var result
@@ -218,6 +219,8 @@ app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
 	})
     
 })
+*/
+
 
 app.post('/createTemporaryUser', function(req, res) {
 	var Name = req.body.Name;
@@ -267,6 +270,17 @@ app.post('/createTemporaryUser', function(req, res) {
 
 })
 
+app.get('/getMerchantConfig/:merchantID', function(req, res) {
+	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
+		 if (docs) {
+		 	res.send(docs)
+		 } else {
+		 	res.send("Not available")
+		 }
+	})
+
+})
+
 app.post('/push', async (req, res) => {
 
 	var note = new apn.Notification();
@@ -301,6 +315,8 @@ app.post('/getDeviceToken', function(req, res) {
 	 res.send("Got device token")
 })
 
+
+/*
 app.post('/getConfigurationbyMerchantID',  (req, res) => {
 
 	var selfie = req.body.selfie;
@@ -317,6 +333,9 @@ app.post('/getConfigurationbyMerchantID',  (req, res) => {
 
     })
 })
+*/
+
+
 
 app.get('/getRegularUser/:merchantID', function(req, res) {
 	configuration_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {

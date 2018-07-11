@@ -381,16 +381,20 @@ app.post('/push', async (req, res) => {
 
 
 	
-	    const { BasicNotification } = require('apns2')
-		let bn = new BasicNotification(deviceToken, 'Hello, World')
-		
-		try {
-		  await client.send(bn)
-		  console.log("slfsdfsdfshfoiewuroi98")
-		} catch(err) {
-		  console.error("Error is " + err.reason)
-		}
-		res.send("Message sent")
+	   const { BasicNotification } = require('apns2')
+ 
+let bn = new BasicNotification(deviceToken, 'Hello, World', {
+  badge: 4,
+  data: {
+    userId: user.getUserId
+  }
+})
+ 
+try {
+  await client.send(bn)
+} catch(err) {
+  console.error(err.reason)
+}
 
 	
 })

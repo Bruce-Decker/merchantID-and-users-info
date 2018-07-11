@@ -22,7 +22,7 @@ const { APNS } = require('apns2')
 let client = new APNS({
   team: `5P3B5P74MT`,
   keyId: `58GPG57T2C`,
-  signingKey: curr_dir + '/AuthKey_58GPG57T2C.p8',
+  signingKey: fs.readFileSync(curr_dir + '/AuthKey_58GPG57T2C.p8'),
   defaultTopic: `com.IDXStudio.FastPassMerchant`
 })
 
@@ -36,8 +36,8 @@ var options = {
 };
 
 var apnProvider = new apn.Provider(options);
-var deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
-//var deviceToken = "58b499eca2d23530abe2325e57031ae6a82ba89b73f265a8f73bc87509a82236"
+//var deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
+var deviceToken = "58b499eca2d23530abe2325e57031ae6a82ba89b73f265a8f73bc87509a82236"
 
 
 
@@ -368,13 +368,12 @@ app.get('/getBarData/:merchantID', function(req, res) {
 
 app.post('/push', async (req, res) => {
 
-
 	var tempID = uuidv1();
   
 	var note = new apn.Notification();
 	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
 	note.badge = 3;
-	note.sound = "";
+	note.sound = "ping.aiff";
 	note.alert = "Your temporary id is " + tempID;
 	note.payload = {'messageFrom': 'John Appleseed'};
 	note.topic = "com.IDXStudio.FastPassMerchant";
@@ -383,9 +382,6 @@ app.post('/push', async (req, res) => {
        console.log(result)
     });
     res.send("Message sent")
-   
-
-
 	/*
 	    const { BasicNotification } = require('apns2')
 		let bn = new BasicNotification(deviceToken, 'Hello, World')
@@ -397,9 +393,8 @@ app.post('/push', async (req, res) => {
 		  console.error("Error is " + err.reason)
 		}
 		res.send("Message sent")
-		*/
 
-	
+	*/
 })
 
 app.post('/getDeviceToken', function(req, res) {

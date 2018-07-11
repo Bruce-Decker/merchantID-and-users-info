@@ -249,23 +249,23 @@ app.post('/createTemporaryUser', function(req, res) {
 	var Last4SSN = req.body.Last4SSN;
 	var merchantID = req.body.merchantID
 	var temp_user_data = {
-		Name: Name,
-		DOB: DOB,
-		Age: Age,
-		Sex: Sex,
-		Address: Address,
-		Phone: Phone,
-		Email: Email,
-		Height: Height,
-		Weight: Weight,
-		DL_Number: DL_Number,
-		DL_Image: DL_Image,
-		Selfie: Selfie,
-		Passport_Number: Passport_Number,
-		Passport_Image: Passport_Image,
-		SSN: SSN,
-		Last4SSN: Last4SSN,
-		merchantID: merchantID
+		100: Name,
+		101: DOB,
+		102: Age,
+		103: Sex,
+		104: Address,
+		105: Phone,
+		106: Email,
+		107: Height,
+		108: Weight,
+		109: DL_Number,
+		110: DL_Image,
+		111: Selfie,
+		112: Passport_Number,
+		113: Passport_Image,
+		114: SSN,
+		115: Last4SSN,
+		9999: merchantID
 	}
 	temporary_data.create(temp_user_data, function(err, newlyCreated) {
 		if (err) {

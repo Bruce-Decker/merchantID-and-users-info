@@ -123,23 +123,23 @@ var property_schema = mongoose.Schema({
 })
 
 var temporary_schema = mongoose.Schema({
-	     Name: String, 
-	     DOB: String, 
-	     Age: String, 
-	     Sex: String, 
-	     Address: String, 
-	     Phone: String, 
-	     Email: String,
-	     Height: String,
-	     Weight: String,
-	     DL_Number: String,
-	     DL_Image: String,
-	     Selfie: String,
-	     Passport_Number: String,
-	     Passport_Image: String,
-	     SSN: String,
-	     Last4SSN: String,
-	     merchantID: String
+	     100: String, 
+	     101: String, 
+	     102: String, 
+	     103: String, 
+	     104: String, 
+	     105: String, 
+	     106: String,
+	     107: String,
+	     108: String,
+	     109: String,
+	     110: String,
+	     111: String,
+	     112: String,
+	     113: String,
+	     114: String,
+	     115: String,
+	     9999: String
 })
 
 var bar_schema = mongoose.Schema({

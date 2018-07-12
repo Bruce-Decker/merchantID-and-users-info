@@ -335,14 +335,30 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 		Last4SSN: Last4SSN,
 		merchantID: merchantID
 	}
-	temporary_data.create(temp_user_data, function(err, newlyCreated) {
-		if (err) {
-			console.log("Error Data");
-			 res.send({msg: "False"});
-		} else {
-			 res.send({msg: "True"});
-		}
-	})
+ temporary_data.findOne({merchantID: merchantID}, function(err, docs) {
+	 	if (docs) {
+	 		temporary_data.findByIdAndUpdate(merchantID, temp_user_data, {new: true}, (err, result) => {
+	 			if (err) {
+	 				res.send("Fail")
+	 			} else {
+	 				console.log(result)
+	 			}
+	 		})
+
+
+	 	} else {
+	 		  temporary_data.create(temp_user_data, function(err, newlyCreated) {
+				if (err) {
+					console.log("Error Data");
+					 res.send({msg: "False"});
+				} else {
+					 res.send({msg: "True"});
+				}
+	          })
+
+	   }
+ })
+	
 
 })
 

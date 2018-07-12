@@ -349,6 +349,8 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 app.get('/getMerchantConfig/:merchantID', function(req, res) {
 	var array = []
 	var json_Object
+	var Name
+	var Address
 	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 		 if (docs) {
 		 	if (docs.Name) {
@@ -399,9 +401,18 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 		 	if (docs.Last4SSN) {
 		 		array.push("115")
 		 	}
+
+		merchant_data.findOne({merchantID: req.params.merchantID}, function(err ,docs) {
+			if (docs.Name) {
+				Name = docs.Name
+			} 
+			if (docs.Address) {
+				Address = docs.Address
+			}
+		})
 		 	
 
-		 	res.send({Number: array, Name: docs.Name, Address: docs.Address})
+		 	res.send({Number: array, Name: Name, Address: Address})
 		 } else {
 		 	res.send("Not available")
 		 }

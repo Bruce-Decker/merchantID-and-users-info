@@ -436,7 +436,7 @@ app.post('/push', async (req, res) => {
   var tempID = uuidv1();
 
 
-/*
+
 
 	const { SilentNotification } = require('apns2')
  
@@ -450,7 +450,7 @@ app.post('/push', async (req, res) => {
          res.send("fail")
     }
 
-   */
+   
 
 /*
 	var note = new apn.Notification();
@@ -469,7 +469,7 @@ app.post('/push', async (req, res) => {
 */
 
 	
-
+/*
 	  const { BasicNotification } = require('apns2')
  
 	let bn = new BasicNotification(deviceToken, 'Your tempID is ' + tempID)
@@ -482,7 +482,7 @@ app.post('/push', async (req, res) => {
 	  res.send("fail")
 	}
 	
-
+*/
 
 	
 })

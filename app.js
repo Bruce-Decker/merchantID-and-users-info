@@ -293,32 +293,35 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 		 	if (docs.Age) {
 		 		array.push("102")
 		 	}
-		 	if (docs.Address) {
+		 	if (docs.Sex) {
 		 		array.push("103")
 		 	}
-		 	if (docs.Phone) {
+		 	if (docs.Address) {
 		 		array.push("104")
 		 	}
-		 	if (docs.Email) {
+		 	if (docs.Phone) {
 		 		array.push("105")
 		 	}
-		 	if (docs.Height) {
+		 	if (docs.Email) {
 		 		array.push("106")
 		 	}
-		 	if (docs.Weight) {
+		 	if (docs.Height) {
 		 		array.push("107")
 		 	}
-		 	if (docs.DL_Number) {
+		 	if (docs.Weight) {
 		 		array.push("108")
 		 	}
-		 	if (docs.DL_Image) {
+		 	if (docs.DL_Number) {
 		 		array.push("109")
 		 	}
+		 	if (docs.DL_Image) {
+		 		array.push("110")
+		 	}
 		 	if (docs.Selfie) {
-                array.push("110")
+                array.push("111")
 		 	}
 		 	if (docs.Passport_Number) {
-		 		array.push("111")
+		 		array.push("112")
 		 	}
 		 	if (docs.Passport_Image) {
 		 		array.push("113")
@@ -340,58 +343,62 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 })
 
 app.get('/fetchTempUser/:userID', function(req, res) {
-	var array = []
-	var json_Object
+	var user_dictionary = []
+	//var array = []
+	//var json_Object
 	temporary_data.findOne({merchantID: req.params.userID}, function(err, docs) {
 		 if (docs) {
 		 	if (docs.Name) {
-		 		array.push("100")
+		 		user_dictionary.push({key: "100", value: docs.Name})
 		 	}
 		 	if (docs.DOB) {
-		 		array.push("101")
+		 		user_dictionary.push({key: "101", value: docs.DOB})
 		 	}
 		 	if (docs.Age) {
-		 		array.push("102")
+		 		user_dictionary.push({key: "102", value: docs.Age})
+		 	}
+		 	if (docs.Sex) {
+		 		user_dictionary.push({key: "103", value: docs.Sex})
 		 	}
 		 	if (docs.Address) {
-		 		array.push("103")
+		 		user_dictionary.push({key: "104", value: docs.Address})
 		 	}
 		 	if (docs.Phone) {
-		 		array.push("104")
+		 		user_dictionary.push({key: "105", value: docs.Phone})
 		 	}
 		 	if (docs.Email) {
-		 		array.push("105")
+		 		user_dictionary.push({key: "106", value: docs.Phone})
 		 	}
 		 	if (docs.Height) {
-		 		array.push("106")
+		 		user_dictionary.push({key: "107", value: docs.Height})
 		 	}
 		 	if (docs.Weight) {
-		 		array.push("107")
+		 		user_dictionary.push({key: "108", value: docs.Weight})
 		 	}
 		 	if (docs.DL_Number) {
-		 		array.push("108")
+		 		user_dictionary.push({key: "109", value: docs.DL_Number})
 		 	}
 		 	if (docs.DL_Image) {
-		 		array.push("109")
+		 		user_dictionary.push({key: "110", value: docs.DL_Image})
 		 	}
 		 	if (docs.Selfie) {
-                array.push("110")
+               user_dictionary.push({key: "111", value: docs.Seflie})
 		 	}
 		 	if (docs.Passport_Number) {
-		 		array.push("111")
+		 		user_dictionary.push({key: "112", value: docs.Passport_Number})
 		 	}
 		 	if (docs.Passport_Image) {
-		 		array.push("113")
+		 		user_dictionary.push({key: "113", value: docs.Passport_Image})
 		 	}
 		 	if (docs.SSN) {
-		 		array.push("114")
+		 		user_dictionary.push({key: "114", value: docs.SNN})
 		 	}
 		 	if (docs.Last4SSN) {
-		 		array.push("115")
+		 		user_dictionary.push({key: "115", value: docs.Last4SSN})
 		 	}
-		 	json_Object = JSON.stringify(array)
+		 	
 
-		 	res.send(json_Object)
+		 	res.send(user_dictionary)
 		 } else {
 		 	res.send("Not available")
 		 }

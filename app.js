@@ -455,7 +455,7 @@ app.post('/saveDeviceToken', function(req, res) {
 app.post('/push/:identifier', async (req, res) => {
   var tempID = uuidv1();
   var deviceToken
-  device_data.findOne({identifier: req.params.identifier}, function(err, docs) {
+  device_data.findOne({identifier: req.body.identifier}, function(err, docs) {
   	  if (docs) {
   	  	console.log("docs is " + docs)
          deviceToken = docs.deviceToken

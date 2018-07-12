@@ -342,6 +342,7 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 	 				res.send("Fail")
 	 			} else {
 	 				console.log(result)
+	 				res.send("Update successfully")
 	 			}
 	 		})
 

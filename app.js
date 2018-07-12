@@ -463,6 +463,8 @@ app.post('/push/:identifier', async (req, res) => {
   	  }
   })
 
+  console.log(deviceToken)
+
 
 
 

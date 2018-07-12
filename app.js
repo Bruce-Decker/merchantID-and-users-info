@@ -23,7 +23,7 @@ let client = new APNS({
   keyId: `58GPG57T2C`,
   signingKey: fs.readFileSync(curr_dir + '/AuthKey_58GPG57T2C.p8'),
   defaultTopic: `com.IDXStudio.FastPassMerchant`,
-  host: 'api.push.apple.com'
+  host: 'api.development.push.apple.com'
 })
 
 var options = {
@@ -392,7 +392,7 @@ app.post('/push', async (req, res) => {
 	  await client.send(bn)
 	  res.send("success")
 	} catch(err) {
-	  console.error(err.reason)
+	  console.error("Error is " + err.reason)
 	  res.send("fail")
 	}
 res.send("Ok")

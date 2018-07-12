@@ -452,7 +452,7 @@ app.post('/saveDeviceToken', function(req, res) {
 	}) 
 })
 
-app.post('/push/:identifier', async (req, res) => {
+app.post('/push', async (req, res) => {
   var tempID = uuidv1();
   var deviceToken
   device_data.findOne({identifier: req.body.identifier}, function(err, docs) {

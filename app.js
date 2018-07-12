@@ -459,7 +459,7 @@ app.post('/push/:identifier', async (req, res) => {
   	  if (docs) {
          deviceToken = docs.deviceToken
   	  } else {
-  	  	res.send("Not availables")
+  	  	console.log("No device token is found")
   	  }
   })
 

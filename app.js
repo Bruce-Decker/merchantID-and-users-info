@@ -148,6 +148,11 @@ var bar_schema = mongoose.Schema({
 	selfie: String,
 	DOB: String
 })
+
+var device_schema = mongoose.Schema({
+	identifier: String,
+	deviceToken: String
+})
 /*
 var user_schema = mongoose.Schema({
 	email: String,
@@ -176,6 +181,8 @@ var property_data = mongoose.model("propertyData", property_schema)
 var temporary_data = mongoose.model("temporaryData", temporary_schema)
 
 var bar_data = mongoose.model("barData", bar_schema)
+
+var device_data = mongoose.model("deviceData", device_schema)
 
 /*
 var user_data = mongoose.model("userData", user_schema);
@@ -432,7 +439,20 @@ app.get('/getBarData/:merchantID', function(req, res) {
 	})
 })
 
-app.post('/push', async (req, res) => {
+app.post('/saveDeviceToken', function(req, res) {
+	var deviceToken = req.body.deviceToken;
+	var identifier = req.body.identifier;
+	var device_info = {identifier: identifier, deviceToken: deviceToken}
+	device_data.create(device_info, function(err, newlyCreated) {
+		if (err) {
+			res.send("Fail")
+		} else {
+			res.send("Success")
+		}
+	}) 
+})
+
+app.post('/push/:identifier', async (req, res) => {
   var tempID = uuidv1();
 
 

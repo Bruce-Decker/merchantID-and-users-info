@@ -67,12 +67,23 @@ mongoose.connect(url);
 var db = mongoose.connection;
 
 var merchant_schema = mongoose.Schema({
-	dataParams: {
-		name: String,
-		age: String,
-		selfie: String
-	},
-	merchantID: String
+	     Name: String, 
+	     DOB: String, 
+	     Age: String, 
+	     Sex: String, 
+	     Address: String, 
+	     Phone: String, 
+	     Email: String,
+	     Height: String,
+	     Weight: String,
+	     DL_Number: String,
+	     DL_Image: String,
+	     Selfie: String,
+	     Passport_Number: String,
+	     Passport_Image: String,
+	     SSN: String,
+	     Last4SSN: String,
+	     merchantID: String
 });
 
 var configuration_schema = mongoose.Schema({
@@ -256,6 +267,55 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	var SSN = req.body[114];
 	var Last4SSN = req.body[115];
 	var merchantID = req.body[9999]
+	var temp_merchant_data = {
+		Name: Name,
+		DOB: DOB,
+		Age: Age,
+		Sex: Sex,
+		Address: Address,
+		Phone: Phone,
+		Email: Email,
+		Height: Height,
+		Weight: Weight,
+		DL_Number: DL_Number,
+		DL_Image: DL_Image,
+		Selfie: Selfie,
+		Passport_Number: Passport_Number,
+		Passport_Image: Passport_Image,
+		SSN: SSN,
+		Last4SSN: Last4SSN,
+		merchantID: merchantID
+	}
+	merchant_data.create(temp_merchant_data, function(err, newlyCreated) {
+		if (err) {
+			console.log("Error Data");
+			 res.send({msg: "False"});
+		} else {
+			 res.send({msg: "True"});
+		}
+	})
+
+})
+
+
+app.post('/createTemporaryReulgarUser', function(req, res) {
+	var Name = req.body[100];
+	var DOB = req.body[101];
+	var Age = req.body[102];
+	var Sex = req.body[103];
+	var Address = req.body[104];
+	var Phone = req.body[105];
+	var Email = req.body[106];
+	var Height = req.body[107];
+	var Weight = req.body[108];
+	var DL_Number = req.body[109];
+	var DL_Image = req.body[110];
+	var Selfie = req.body[111];
+	var Passport_Number = req.body[112];
+	var Passport_Image = req.body[113];
+	var SSN = req.body[114];
+	var Last4SSN = req.body[115];
+	var merchantID = req.body[9999]
 	var temp_user_data = {
 		Name: Name,
 		DOB: DOB,
@@ -289,7 +349,7 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 app.get('/getMerchantConfig/:merchantID', function(req, res) {
 	var array = []
 	var json_Object
-	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
+	merchant_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 		 if (docs) {
 		 	if (docs.Name) {
 		 		array.push("100")

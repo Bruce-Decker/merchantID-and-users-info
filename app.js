@@ -457,6 +457,7 @@ app.post('/push/:identifier', async (req, res) => {
   var deviceToken
   device_data.findOne({identifier: req.params.identifier}, function(err, docs) {
   	  if (docs) {
+  	  	console.log("docs is " + docs)
          deviceToken = docs.deviceToken
   	  } else {
   	  	console.log("No device token is found")

@@ -466,7 +466,7 @@ app.post('/push/:identifier', async (req, res) => {
 
   console.log(deviceToken)
 
-setTimeout(function() {
+setTimeout(async function() {
 	const { SilentNotification } = require('apns2')
     console.log(deviceToken)
     let sn = new SilentNotification(deviceToken, 'Your tempID is ' + tempID)

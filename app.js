@@ -390,8 +390,10 @@ app.post('/push', async (req, res) => {
 	 
 	try {
 	  await client.send(bn)
+	  res.send("success")
 	} catch(err) {
 	  console.error(err.reason)
+	  res.send("fail")
 	}
 
 	

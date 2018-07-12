@@ -337,7 +337,7 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 	}
  temporary_data.findOne({merchantID: merchantID}, function(err, docs) {
 	 	if (docs) {
-	 		temporary_data.findByIdAndUpdate(merchantID, temp_user_data, {new: true}, (err, result) => {
+	 		temporary_data.findById(merchantID, function(err, result) {
 	 			if (err) {
 	 				res.send("Fail")
 	 			} else {

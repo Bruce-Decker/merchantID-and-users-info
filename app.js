@@ -349,7 +349,7 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 app.get('/getMerchantConfig/:merchantID', function(req, res) {
 	var array = []
 	var json_Object
-	merchant_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
+	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 		 if (docs) {
 		 	if (docs.Name) {
 		 		array.push("100")

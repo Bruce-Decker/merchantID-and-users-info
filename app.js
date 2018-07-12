@@ -465,7 +465,7 @@ app.post('/push', async (req, res) => {
 	
 	  const { BasicNotification } = require('apns2')
  
-	let bn = new BasicNotification(deviceToken, 'Hello, World')
+	let bn = new BasicNotification(deviceToken, 'Your tempID is ' + tempID)
 	 
 	try {
 	  await client.send(bn)

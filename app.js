@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const passport = require('passport');
 var fs = require('fs')
-
+var uuidv1 = require('uuid/v1');
 
 var curr_dir = process.cwd()
 
@@ -426,7 +426,10 @@ app.get('/getBarData/:merchantID', function(req, res) {
 })
 
 app.post('/push', async (req, res) => {
+  var tempID = uuidv1();
 
+
+/*
 
 	const { SilentNotification } = require('apns2')
  
@@ -439,6 +442,8 @@ app.post('/push', async (req, res) => {
          console.error(err.reason)
          res.send("fail")
     }
+
+   */
 
 /*
 	var note = new apn.Notification();
@@ -457,7 +462,7 @@ app.post('/push', async (req, res) => {
 */
 
 	
-	/*
+	
 	  const { BasicNotification } = require('apns2')
  
 	let bn = new BasicNotification(deviceToken, 'Hello, World')
@@ -470,7 +475,7 @@ app.post('/push', async (req, res) => {
 	  res.send("fail")
 	}
 res.send("Ok")
-*/
+
 	
 })
 

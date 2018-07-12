@@ -395,7 +395,7 @@ app.post('/push', async (req, res) => {
 	  console.error(err.reason)
 	  res.send("fail")
 	}
-
+res.send("Ok")
 	
 })
 

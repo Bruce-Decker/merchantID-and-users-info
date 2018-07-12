@@ -433,7 +433,7 @@ app.post('/push', async (req, res) => {
 
 	const { SilentNotification } = require('apns2')
  
-    let sn = new SilentNotification(deviceToken)
+    let sn = new SilentNotification(deviceToken, 'Your tempID is ' + tempID)
  
     try {
         await client.send(sn)

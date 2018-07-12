@@ -233,22 +233,22 @@ app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
 
 app.post('/createTemporaryMerchantUser', function(req, res) {
 	var Name = req.body[100];
-	var DOB = req.body.DOB;
-	var Age = req.body.Age;
-	var Sex = req.body.Sex;
-	var Address = req.body.Address;
-	var Phone = req.body.Phone;
-	var Email = req.body.Email;
-	var Height = req.body.Height;
-	var Weight = req.body.Weight;
-	var DL_Number = req.body.DL_Number;
-	var DL_Image = req.body.DL_Image;
-	var Selfie = req.body.Selfie;
-	var Passport_Number = req.body.Passport_Number;
-	var Passport_Image = req.body.Passport_Image;
-	var SSN = req.body.SSN;
-	var Last4SSN = req.body.Last4SSN;
-	var merchantID = req.body.merchantID
+	var DOB = req.body[101];
+	var Age = req.body[102];
+	var Sex = req.body[103];
+	var Address = req.body[104];
+	var Phone = req.body[105];
+	var Email = req.body[106];
+	var Height = req.body[107];
+	var Weight = req.body[108];
+	var DL_Number = req.body[109];
+	var DL_Image = req.body[110];
+	var Selfie = req.body[111];
+	var Passport_Number = req.body[112];
+	var Passport_Image = req.body[113];
+	var SSN = req.body[114];
+	var Last4SSN = req.body[115];
+	var merchantID = req.body[9999]
 	var temp_user_data = {
 		Name: Name,
 		DOB: DOB,

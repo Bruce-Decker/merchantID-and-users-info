@@ -37,7 +37,7 @@ var options = {
 
 var apnProvider = new apn.Provider(options);
 //var deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
-var deviceToken = "656551f8a09c6c969e13e0550069ae556cd7a66a4f4aa571a24b3886e5246b55"
+//var deviceToken = "656551f8a09c6c969e13e0550069ae556cd7a66a4f4aa571a24b3886e5246b55"
 
 
 
@@ -454,6 +454,14 @@ app.post('/saveDeviceToken', function(req, res) {
 
 app.post('/push/:identifier', async (req, res) => {
   var tempID = uuidv1();
+  var deviceToken
+  device_data.findOne({identifier: req.params.identifier}, function(err, docs) {
+  	  if (docs) {
+         deviceToken = docs.deviceToken
+  	  } else {
+  	  	res.send("Not availables")
+  	  }
+  })
 
 
 

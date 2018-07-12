@@ -329,9 +329,9 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 		 	if (docs.Last4SSN) {
 		 		array.push("115")
 		 	}
-		 	json_Object = JSON.stringify(array)
+		 	
 
-		 	res.send({json_Object, Name: docs.Name, Address: docs.Address})
+		 	res.send({Number: array, Name: docs.Name, Address: docs.Address})
 		 } else {
 		 	res.send("Not available")
 		 }

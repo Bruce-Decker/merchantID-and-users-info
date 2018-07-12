@@ -464,7 +464,7 @@ app.get('/fetchTempUser/:userID', function(req, res) {
 		 		user_dictionary.push({key: "110", value: docs.DL_Image})
 		 	}
 		 	if (docs.Selfie) {
-               user_dictionary.push({key: "111", value: docs.Seflie})
+               user_dictionary.push({key: "111", value: docs.Selfie})
 		 	}
 		 	if (docs.Passport_Number) {
 		 		user_dictionary.push({key: "112", value: docs.Passport_Number})

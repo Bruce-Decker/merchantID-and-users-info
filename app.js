@@ -413,8 +413,10 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 		})
 		console.log(Name)
 		 	
-
-		 	res.send({Number: array, Name: Name, Address: Address})
+       setTimeout(function() {
+          res.send({Number: array, Name: Name, Address: Address})
+       }, 1000)
+		 	
 		 } else {
 		 	res.send("Not available")
 		 }

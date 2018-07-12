@@ -403,6 +403,7 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 		 	}
 
 		merchant_data.findOne({merchantID: req.params.merchantID}, function(err ,docs) {
+			console.log(docs)
 			if (docs.Name) {
 				Name = docs.Name
 			} 
@@ -410,6 +411,7 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 				Address = docs.Address
 			}
 		})
+		console.log(Name)
 		 	
 
 		 	res.send({Number: array, Name: Name, Address: Address})

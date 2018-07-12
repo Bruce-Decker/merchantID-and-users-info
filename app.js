@@ -22,7 +22,8 @@ let client = new APNS({
   team: `5P3B5P74MT`,
   keyId: `58GPG57T2C`,
   signingKey: fs.readFileSync(curr_dir + '/AuthKey_58GPG57T2C.p8'),
-  defaultTopic: `com.IDXStudio.FastPassMerchant`
+  defaultTopic: `com.IDXStudio.FastPassMerchant`,
+  host: 'https://api.development.push.apple.com'
 })
 
 var options = {

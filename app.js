@@ -366,6 +366,19 @@ app.get('/getBarData/:merchantID', function(req, res) {
 
 app.post('/push', async (req, res) => {
 
+
+	const { SilentNotification } = require('apns2')
+ 
+    let sn = new SilentNotification(deviceToken)
+ 
+    try {
+        await client.send(sn)
+        res.send("success")
+    } catch(err) {
+         console.error(err.reason)
+         res.send("fail")
+    }
+
 /*
 	var note = new apn.Notification();
 	note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
@@ -383,7 +396,7 @@ app.post('/push', async (req, res) => {
 */
 
 	
-	
+	/*
 	  const { BasicNotification } = require('apns2')
  
 	let bn = new BasicNotification(deviceToken, 'Hello, World')
@@ -396,6 +409,7 @@ app.post('/push', async (req, res) => {
 	  res.send("fail")
 	}
 res.send("Ok")
+*/
 	
 })
 

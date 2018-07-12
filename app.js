@@ -466,11 +466,9 @@ app.post('/push/:identifier', async (req, res) => {
 
   console.log(deviceToken)
 
-
-
-
+setTimeout(function() {
 	const { SilentNotification } = require('apns2')
- 
+    console.log(deviceToken)
     let sn = new SilentNotification(deviceToken, 'Your tempID is ' + tempID)
  
     try {
@@ -480,6 +478,11 @@ app.post('/push/:identifier', async (req, res) => {
          console.error(err.reason)
          res.send("fail")
     }
+
+		
+}, 1000)
+
+
 
    
 

@@ -232,7 +232,7 @@ app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
 
 
 app.post('/createTemporaryMerchantUser', function(req, res) {
-	var Name = req.body.['100'];
+	var Name = req.body.Name;
 	var DOB = req.body.DOB;
 	var Age = req.body.Age;
 	var Sex = req.body.Sex;

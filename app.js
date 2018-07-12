@@ -391,7 +391,7 @@ app.get('/fetchTempUser/:userID', function(req, res) {
 		 	}
 		 	json_Object = JSON.stringify(array)
 
-		 	res.send({json_Object, Name: docs.Name, Address: docs.Address})
+		 	res.send(json_Object)
 		 } else {
 		 	res.send("Not available")
 		 }

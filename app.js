@@ -339,6 +339,67 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 
 })
 
+app.get('/fetchTempUser/:userID', function(req, res) {
+	var array = []
+	var json_Object
+	temporary_data.findOne({merchantID: req.params.userID}, function(err, docs) {
+		 if (docs) {
+		 	if (docs.Name) {
+		 		array.push("100")
+		 	}
+		 	if (docs.DOB) {
+		 		array.push("101")
+		 	}
+		 	if (docs.Age) {
+		 		array.push("102")
+		 	}
+		 	if (docs.Address) {
+		 		array.push("103")
+		 	}
+		 	if (docs.Phone) {
+		 		array.push("104")
+		 	}
+		 	if (docs.Email) {
+		 		array.push("105")
+		 	}
+		 	if (docs.Height) {
+		 		array.push("106")
+		 	}
+		 	if (docs.Weight) {
+		 		array.push("107")
+		 	}
+		 	if (docs.DL_Number) {
+		 		array.push("108")
+		 	}
+		 	if (docs.DL_Image) {
+		 		array.push("109")
+		 	}
+		 	if (docs.Selfie) {
+                array.push("110")
+		 	}
+		 	if (docs.Passport_Number) {
+		 		array.push("111")
+		 	}
+		 	if (docs.Passport_Image) {
+		 		array.push("113")
+		 	}
+		 	if (docs.SSN) {
+		 		array.push("114")
+		 	}
+		 	if (docs.Last4SSN) {
+		 		array.push("115")
+		 	}
+		 	json_Object = JSON.stringify(array)
+
+		 	res.send({json_Object, Name: docs.Name, Address: docs.Address})
+		 } else {
+		 	res.send("Not available")
+		 }
+	})
+
+})
+
+
 app.post('/createBarData', function(req, res) {
 	 var merchantID = req.body.merchantID;
 	 var selfie = req.body.selfie;

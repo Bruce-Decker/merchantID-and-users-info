@@ -561,11 +561,17 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 			if (docs.Address) {
 				Address = docs.Address
 			}
+			if (docs.Age) {
+				Age = docs.Age
+			}
+			if (docs.Selfie) {
+				Selfie = docs.Selife
+			}
 		})
 		console.log(Name)
 		 	
        setTimeout(function() {
-          res.send({Number: array, Name: Name, Address: Address})
+          res.send({Number: array, Selfie: Selfie, Age: Age})
        }, 1000)
 		 	
 		 } else {

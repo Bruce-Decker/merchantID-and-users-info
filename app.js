@@ -314,6 +314,9 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	if (Height != null) {
 		temp_merchant_data.push({Height: Height})
 	}
+	if (merchantID != null) {
+		temp_merchant_data.push({merchantID: merchantID})
+	}
 
 	merchant_data.findOne({merchantID: merchantID}, function(err, docs) {
 		if (docs) {

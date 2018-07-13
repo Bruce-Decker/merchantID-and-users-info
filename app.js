@@ -572,7 +572,7 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 		 	
        setTimeout(function() {
           res.send({Number: array, Selfie: Selfie, Age: Age})
-       }, 1000)
+       }, 3000)
 		 	
 		 } else {
 		 	res.send("Not available")

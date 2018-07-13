@@ -317,6 +317,7 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	if (merchantID != null) {
 		temp_merchant_data.push({merchantID: merchantID})
 	}
+	console.log(temp_merchant_data)
 
 	merchant_data.findOne({merchantID: merchantID}, function(err, docs) {
 		if (docs) {

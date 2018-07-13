@@ -267,7 +267,7 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	var SSN = req.body[114];
 	var Last4SSN = req.body[115];
 	var merchantID = req.body[9999]
-	var temp_merchant_data = {}
+	var temp_merchant_data = [{}]
 
 /*
 	var temp_merchant_data = {
@@ -293,6 +293,7 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	if (Name != null) {
        temp_merchant_data.append({Name: Name})
 	}
+
 	merchant_data.findOne({merchantID: merchantID}, function(err, docs) {
 		if (docs) {
 			merchant_data.findOneAndUpdate({merchantID: merchantID}, temp_merchant_data, function(err, result) {

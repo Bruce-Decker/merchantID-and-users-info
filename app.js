@@ -267,6 +267,7 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	var SSN = req.body[114];
 	var Last4SSN = req.body[115];
 	var merchantID = req.body[9999]
+
 	var temp_merchant_data = {}
 
 /*
@@ -314,10 +315,34 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	if (Height != null) {
 		temp_merchant_data["Height"] = Height
 	}
+	if (Weight != null) {
+		temp_merchant_data["Weight"] = Weight
+	}
+	if (DL_Number != null) {
+		temp_merchant_data["DL_Number"] = DL_Number 
+	}
+	if (DL_Image != null) {
+		temp_merchant_data["DL_Image"] = DL_Image
+	}
+	if (Selfie != null) {
+		temp_merchant_data["Selfie"] = Selfie
+	}
+	if (Passport_Number != null) {
+		temp_merchant_data["Passport_Number"] = Passport_Number
+	}
+	if (Passport_Image != null) {
+		temp_merchant_data["Passport_Image"] = Passport_Image
+	}
+	if (SSN != null) {
+		temp_merchant_data["SSN"] = SSN
+	}
+	if (Last4SSN != null) {
+		temp_merchant_data["Last4SSN"] = Last4SSN
+	}
 	if (merchantID != null) {
 		temp_merchant_data["merchantID"] = merchantID
 	}
-	console.log(temp_merchant_data)
+	
 
 	merchant_data.findOne({merchantID: merchantID}, function(err, docs) {
 		if (docs) {
@@ -365,6 +390,63 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 	var SSN = req.body[114];
 	var Last4SSN = req.body[115];
 	var merchantID = req.body[9999]
+
+	var temp_user_data = {}
+
+	if (Name != null) {
+       temp_user_data["Name"] = Name
+	}
+	if (DOB != null) {
+	   temp_user_data["DOB"] = DOB
+	}
+	if (Age != null) {
+	   temp_user_data["Age"] = Age
+	}
+	if (Sex != null) {
+	   temp_user_data["Sex"] = Sex
+	}
+	if (Address != null) {
+		temp_user_data["Address"] = Address
+	}
+	if (Phone != null) {
+		temp_user_data["Phone"] = Phone
+	}
+	if (Email != null) {
+		temp_user_data["Email"] = Email
+	}
+	if (Height != null) {
+		temp_user_data["Height"] = Height
+	}
+	if (Weight != null) {
+		temp_user_data["Weight"] = Weight
+	}
+	if (DL_Number != null) {
+		temp_user_data["DL_Number"] = DL_Number 
+	}
+	if (DL_Image != null) {
+		temp_user_data["DL_Image"] = DL_Image
+	}
+	if (Selfie != null) {
+		temp_user_data["Selfie"] = Selfie
+	}
+	if (Passport_Number != null) {
+		temp_user_data["Passport_Number"] = Passport_Number
+	}
+	if (Passport_Image != null) {
+		temp_user_data["Passport_Image"] = Passport_Image
+	}
+	if (SSN != null) {
+		temp_user_data["SSN"] = SSN
+	}
+	if (Last4SSN != null) {
+		temp_user_data["Last4SSN"] = Last4SSN
+	}
+	if (merchantID != null) {
+		temp_user_data["merchantID"] = merchantID
+	}
+	
+
+/*
 	var temp_user_data = {
 		Name: Name,
 		DOB: DOB,
@@ -384,6 +466,7 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 		Last4SSN: Last4SSN,
 		merchantID: merchantID
 	}
+*/
  temporary_data.findOne({merchantID: merchantID}, function(err, docs) {
 	 	if (docs) {
 	 		temporary_data.findOneAndUpdate({merchantID: merchantID}, temp_user_data,  function(err, result) {

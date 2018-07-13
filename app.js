@@ -504,7 +504,7 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 	var Address
 	var Selfie
 	var Age
-	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
+	merchant_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 		 if (docs) {
 		 	if (docs.Name) {
 		 		array.push("100")
@@ -573,8 +573,8 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 		console.log(Name)
 		 	
        setTimeout(function() {
-          res.send({Number: array, Selfie: Selfie, Age: Age})
-       }, 3000)
+          res.send({Number: array, Name: Name, Address: Address})
+       }, 1000)
 		 	
 		 } else {
 		 	res.send("Not available")

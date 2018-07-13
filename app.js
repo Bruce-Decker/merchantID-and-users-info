@@ -291,7 +291,7 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	}
 	*/
 	if (Name != null) {
-       temp_merchant_data.append({Name: Name})
+       temp_merchant_data.push({Name: Name})
 	}
 
 	merchant_data.findOne({merchantID: merchantID}, function(err, docs) {

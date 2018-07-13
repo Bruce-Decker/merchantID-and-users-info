@@ -254,6 +254,10 @@ app.get('/getRequiredUserInfo/:merchantID', function(req, res) {
 })
 */
 
+app.get('/ping', function(req, res) {
+	res.send("Ping")
+})
+
 
 app.post('/createTemporaryMerchantUser', function(req, res) {
 	var Name = req.body[100];

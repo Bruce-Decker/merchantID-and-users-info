@@ -588,6 +588,7 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 
 })
 
+//
 app.get('/fetchTempUser/:userID', function(req, res) {
 	var user_dictionary = []
 	//var array = []

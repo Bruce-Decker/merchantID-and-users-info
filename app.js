@@ -43,7 +43,7 @@ var options = {
 
 var apnProvider = new apn.Provider(options);
 //var deviceToken = "3453d878599838d3483ba40334d221dc8c9d469a2ce51852f3f46fb094f6fe21"
-//var deviceToken = "656551f8a09c6c969e13e0550069ae556cd7a66a4f4aa571a24b3886e5246b55"
+var deviceToken = "656551f8a09c6c969e13e0550069ae556cd7a66a4f4aa571a24b3886e5246b55"
 
 
 
@@ -499,6 +499,38 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 
 	   }
  })
+
+ var tempID = uuidv1();
+  
+
+  /*
+  var deviceToken 
+  device_data.findOne({identifier: req.body.identifier}, function(err, docs) {
+  	  if (docs) {
+  	  	console.log("docs is " + docs)
+         deviceToken = docs.deviceToken
+  	  } else {
+  	  	console.log("No device token is found")
+  	  }
+  })
+*/
+  console.log(deviceToken)
+
+setTimeout(async function() {
+	const { SilentNotification } = require('apns2')
+    console.log(deviceToken)
+    let sn = new SilentNotification(deviceToken, 'Your tempID is ' + tempID)
+ 
+    try {
+        await client.send(sn)
+        res.send("success")
+    } catch(err) {
+         console.error(err.reason)
+         res.send("fail")
+    }
+
+		
+}, 1000)
 	
 
 })

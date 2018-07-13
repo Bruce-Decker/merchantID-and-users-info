@@ -293,6 +293,27 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	if (Name != null) {
        temp_merchant_data.push({Name: Name})
 	}
+	if (DOB != null) {
+	   temp_merchant_data.push({DOB: DOB})
+	}
+	if (Age != null) {
+	   temp_merchant_data.push({Age: Age})
+	}
+	if (Sex != null) {
+	   temp_merchant_data.push({Sex: Sex})
+	}
+	if (Address != null) {
+		temp_merchant_data.push({Address: Address})
+	}
+	if (Phone != null) {
+		temp_merchant_data.push({Phone: Phone})
+	}
+	if (Email != null) {
+		temp_merchant_data.push({Email: Email})
+	}
+	if (Height != null) {
+		temp_merchant_data.push({Height: Height})
+	}
 
 	merchant_data.findOne({merchantID: merchantID}, function(err, docs) {
 		if (docs) {

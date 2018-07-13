@@ -482,7 +482,8 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 	 				res.send("Fail")
 	 			} else {
 	 				console.log(result)
-	 				res.send("Update successfully")
+	 				//res.send("Update successfully")
+	 				push()
 	 			}
 	 		})
 
@@ -493,14 +494,15 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 					console.log("Error Data");
 					 res.send({msg: "False"});
 				} else {
-					 res.send({msg: "True"});
+					 //res.send({msg: "True"});
+					 push()
 				}
 	          })
 
 	   }
  })
 
- var tempID = uuidv1();
+
   
 
   /*
@@ -515,23 +517,23 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
   })
 */
   console.log(deviceToken)
+function push() {
+	setTimeout(async function() {
+		const { SilentNotification } = require('apns2')
+	    console.log(deviceToken)
+	    let sn = new SilentNotification(deviceToken, 'Your tempID is ' + tempID)
+	 
+	    try {
+	        await client.send(sn)
+	        res.send("success")
+	    } catch(err) {
+	         console.error(err.reason)
+	         res.send("fail")
+	    }
 
-setTimeout(async function() {
-	const { SilentNotification } = require('apns2')
-    console.log(deviceToken)
-    let sn = new SilentNotification(deviceToken, 'Your tempID is ' + tempID)
- 
-    try {
-        await client.send(sn)
-        res.send("success")
-    } catch(err) {
-         console.error(err.reason)
-         res.send("fail")
-    }
-
-		
-}, 1000)
-	
+			
+	}, 4000)
+}
 
 })
 

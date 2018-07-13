@@ -502,6 +502,7 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 	var json_Object
 	var Name
 	var Address
+	var Selfie
 	temporary_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 		 if (docs) {
 		 	if (docs.Name) {

@@ -286,13 +286,28 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 		Last4SSN: Last4SSN,
 		merchantID: merchantID
 	}
-	merchant_data.create(temp_merchant_data, function(err, newlyCreated) {
-		if (err) {
-			console.log("Error Data");
-			 res.send({msg: "False"});
+	merchant_data.findOne({merchantID: merchantID}, function(err, docs) {
+		if (docs) {
+			merchant_data.findOneAndUpdate({merchantID: merchantID}, temp_merchant_data, function(err, result) {
+				 if (err) {
+				 	res.send("Fail")
+				 } else {
+				 	console.log(result)
+	 				res.send("Update successfully")
+	 			 }
+			})
 		} else {
-			 res.send({msg: "True"});
+				merchant_data.create(temp_merchant_data, function(err, newlyCreated) {
+					if (err) {
+						console.log("Error Data");
+						 res.send({msg: "False"});
+					} else {
+						 res.send({msg: "True"});
+					}
+			   })
+
 		}
+
 	})
 
 })

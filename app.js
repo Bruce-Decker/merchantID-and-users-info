@@ -297,6 +297,7 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	 			 }
 			})
 		} else {
+			   console.log(temp_merchant_data)
 				merchant_data.create(temp_merchant_data, function(err, newlyCreated) {
 					if (err) {
 						console.log("Error Data");

@@ -11,10 +11,11 @@ var fs = require('fs')
 var uuidv1 = require('uuid/v1');
 var http = require("http")
 //Pings app every five minutes. Prevent it from going to sleep every five 
+/*
 setInterval(function() {
     http.get("https://merchant-id-users.herokuapp.com");
 }, 300000); 
-
+*/
 var curr_dir = process.cwd()
 
  var apn = require("apn");

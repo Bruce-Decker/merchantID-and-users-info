@@ -267,7 +267,7 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	var SSN = req.body[114];
 	var Last4SSN = req.body[115];
 	var merchantID = req.body[9999]
-	var temp_merchant_data = []
+	var temp_merchant_data = {}
 
 /*
 	var temp_merchant_data = {
@@ -291,31 +291,31 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 	}
 	*/
 	if (Name != null) {
-       temp_merchant_data.push({Name: Name})
+       temp_merchant_data["Name"] = Name
 	}
 	if (DOB != null) {
-	   temp_merchant_data.push({DOB: DOB})
+	   temp_merchant_data["DOB"] = DOB
 	}
 	if (Age != null) {
-	   temp_merchant_data.push({Age: Age})
+	   temp_merchant_data["Age"] = Age
 	}
 	if (Sex != null) {
-	   temp_merchant_data.push({Sex: Sex})
+	   temp_merchant_data["Sex"] = Sex
 	}
 	if (Address != null) {
-		temp_merchant_data.push({Address: Address})
+		temp_merchant_data["Address"] = Address
 	}
 	if (Phone != null) {
-		temp_merchant_data.push({Phone: Phone})
+		temp_merchant_data["Phone"] = Phone
 	}
 	if (Email != null) {
-		temp_merchant_data.push({Email: Email})
+		temp_merchant_data["Email"] = Email
 	}
 	if (Height != null) {
-		temp_merchant_data.push({Height: Height})
+		temp_merchant_data["Height"] = Height
 	}
 	if (merchantID != null) {
-		temp_merchant_data.push({merchantID: merchantID})
+		temp_merchant_data["merchantID"] = merchantID
 	}
 	console.log(temp_merchant_data)
 

@@ -517,7 +517,7 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
   })
 */
   console.log(deviceToken)
-function push() {
+function async push() {
 	setTimeout(async function() {
 		const { SilentNotification } = require('apns2')
 	    console.log(deviceToken)

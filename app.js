@@ -506,52 +506,52 @@ app.get('/getMerchantConfig/:merchantID', function(req, res) {
 	var Age
 	merchant_data.findOne({merchantID: req.params.merchantID}, function(err, docs) {
 		 if (docs) {
-		 	if (docs.Name) {
+		 	if (docs.Name == "Required") {
 		 		array.push("100")
 		 	}
-		 	if (docs.DOB) {
+		 	if (docs.DOB == "Required") {
 		 		array.push("101")
 		 	}
-		 	if (docs.Age) {
+		 	if (docs.Age == "Required") {
 		 		array.push("102")
 		 	}
-		 	if (docs.Sex) {
+		 	if (docs.Sex == "Required") {
 		 		array.push("103")
 		 	}
-		 	if (docs.Address) {
+		 	if (docs.Address == "Required") {
 		 		array.push("104")
 		 	}
-		 	if (docs.Phone) {
+		 	if (docs.Phone == "Required") {
 		 		array.push("105")
 		 	}
-		 	if (docs.Email) {
+		 	if (docs.Email == "Required") {
 		 		array.push("106")
 		 	}
-		 	if (docs.Height) {
+		 	if (docs.Height == "Required") {
 		 		array.push("107")
 		 	}
-		 	if (docs.Weight) {
+		 	if (docs.Weight == "Required") {
 		 		array.push("108")
 		 	}
-		 	if (docs.DL_Number) {
+		 	if (docs.DL_Number == "Required") {
 		 		array.push("109")
 		 	}
-		 	if (docs.DL_Image) {
+		 	if (docs.DL_Image == "Required") {
 		 		array.push("110")
 		 	}
-		 	if (docs.Selfie) {
+		 	if (docs.Selfie == "Required") {
                 array.push("111")
 		 	}
-		 	if (docs.Passport_Number) {
+		 	if (docs.Passport_Number == "Required") {
 		 		array.push("112")
 		 	}
-		 	if (docs.Passport_Image) {
+		 	if (docs.Passport_Image == "Required") {
 		 		array.push("113")
 		 	}
-		 	if (docs.SSN) {
+		 	if (docs.SSN == "Required") {
 		 		array.push("114")
 		 	}
-		 	if (docs.Last4SSN) {
+		 	if (docs.Last4SSN == "Required") {
 		 		array.push("115")
 		 	}
 

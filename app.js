@@ -444,6 +444,8 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 	if (merchantID != null) {
 		temp_user_data["merchantID"] = merchantID
 	}
+
+	console.log("Example boy " + req.body)
 	
 
 /*

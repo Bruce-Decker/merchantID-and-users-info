@@ -401,6 +401,18 @@ app.post('/createClientUser', function(req, res) {
 	 })
 })
 
+app.post('/loginClientUser', function(req, res) {
+	var customerID = req.body.userID;
+	client_data.findOne({customerID: customerID}, function(err, docs) {
+		if (docs) {
+			res.send({"success": "true", customerID: docs.customerID})
+		} else {
+			res.status(404).json(err)
+		}
+	})
+
+})
+
 
 app.post('/createTemporaryReulgarUser', function(req, res) {
 	var Name = req.body[100];

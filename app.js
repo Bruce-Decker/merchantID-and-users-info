@@ -97,6 +97,13 @@ var client_schema = mongoose.Schema({
 	customerID: String
 })
 
+var history_schema = mongoose.Schema({
+	date: String,
+	location: String,
+	merchantName: String,
+	info: String
+})
+
 var configuration_schema = mongoose.Schema({
 	merchantID: String,
 	selfie: String,
@@ -104,6 +111,7 @@ var configuration_schema = mongoose.Schema({
 })
 
 var history_schema = mongoose.Schema({
+	userID: String,
 	location: String,
 	date: String,
 	name: String
@@ -207,6 +215,10 @@ var bar_data = mongoose.model("barData", bar_schema)
 var device_data = mongoose.model("deviceData", device_schema)
 
 var client_data = mongoose.model("clientData", client_schema)
+
+var history_data = mongoose.model("historyData", history_schema)
+
+
 
 /*
 var user_data = mongoose.model("userData", user_schema);
@@ -392,7 +404,7 @@ app.post('/createClientUser', function(req, res) {
      var identity = req.body.identity;
      var customerID = uuidv1();
      var clientData = {identity: identity, customerID: customerID}
-	 client_data.create(clientData, function(err, newData) {
+	 client_data.create(clientData, function(err, newlyCreated) {
 	 	 if (err) {
 	 	 	res.status(404).json(err)
 	 	 } else {
@@ -408,6 +420,34 @@ app.post('/loginClientUser', function(req, res) {
 			res.send({"success": "true", customerID: docs.customerID})
 		} else {
 			res.send({"Status": "false", "error": "not found"})
+		}
+	})
+
+})
+
+app.post('/createHistory', function(req, res) {
+	 var userID = req.body.userID;
+	 var date = req.body.date;
+	 var location = req.body.location;
+	 var merchantName = req.body.merchantName;
+	 var info = req.body.info;
+	 var historyData = {date: date, location: location, merchantName: merchantName, info: info}
+	 history_data.create(historyData, function(err, newlyCreated) {
+	 	 if (err) {
+	 	 	res.send({"success": "false", "error": err})
+	 	 } else {
+	 	 	res.send("success": "true")
+	 	 }
+	 })
+
+})
+
+app.get('/scanHistory:userID', function(req, res) {
+	history_data.find({userID: req.params:userID}, function(err, docs) {
+		if (docs) {
+			res.send(docs)
+		} else {
+			res.send({"error": err})
 		}
 	})
 

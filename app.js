@@ -392,7 +392,7 @@ app.post('/createClientUser', function(req, res) {
      var identity = req.body.identity;
      var customerID = uuidv1();
      var clientData = {identity: identity, customerID: customerID}
-	 client_data.create(client_data, function(err, newData) {
+	 client_data.create(clientData, function(err, newData) {
 	 	 if (err) {
 	 	 	res.status(404).json(err)
 	 	 } else {

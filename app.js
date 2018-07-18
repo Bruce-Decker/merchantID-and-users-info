@@ -443,7 +443,7 @@ app.post('/createHistory', function(req, res) {
 
 })
 
-app.get('/scanHistory:userID', function(req, res) {
+app.get('/scanHistory/:userID', function(req, res) {
 	history_data.find({userID: req.params.userID}, function(err, docs) {
 		if (docs) {
 			res.send(docs)

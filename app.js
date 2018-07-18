@@ -92,6 +92,11 @@ var merchant_schema = mongoose.Schema({
 	     merchantID: String
 });
 
+var client_schema = mongoose.Schema({
+	Identity: String,
+	customerID: String
+})
+
 var configuration_schema = mongoose.Schema({
 	merchantID: String,
 	selfie: String,
@@ -200,6 +205,8 @@ var temporary_data = mongoose.model("temporaryData", temporary_schema)
 var bar_data = mongoose.model("barData", bar_schema)
 
 var device_data = mongoose.model("deviceData", device_schema)
+
+var client_data = mongoose.model("clientData", client_schema)
 
 /*
 var user_data = mongoose.model("userData", user_schema);
@@ -379,6 +386,19 @@ app.post('/createTemporaryMerchantUser', function(req, res) {
 
 	})
 
+})
+
+app.post('/createClientUser', function(req, res) {
+     var identity = req.body.identity;
+     var customerID = uuidv1();
+     var clientData = {identity: identity, customerID: customerID}
+	 client_data.create(client_data, function(err, newData) {
+	 	 if (err) {
+	 	 	res.status(404).json(err)
+	 	 } else {
+	 	 	res.send({"customerID": customerID})
+	 	 }
+	 })
 })
 
 

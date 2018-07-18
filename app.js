@@ -407,7 +407,7 @@ app.post('/loginClientUser', function(req, res) {
 		if (docs) {
 			res.send({"success": "true", customerID: docs.customerID})
 		} else {
-			res.status(404).json(err)
+			res.send(err)
 		}
 	})
 

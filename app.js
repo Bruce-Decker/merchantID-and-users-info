@@ -93,7 +93,7 @@ var merchant_schema = mongoose.Schema({
 });
 
 var client_schema = mongoose.Schema({
-	Identity: String,
+	identity: String,
 	customerID: String
 })
 

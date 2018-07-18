@@ -434,7 +434,7 @@ app.post('/createHistory', function(req, res) {
 	 var historyData = {date: date, location: location, merchantName: merchantName, info: info}
 	 history_data.create(historyData, function(err, newlyCreated) {
 	 	 if (err) {
-	 	 	res.send({"success": "false", "error": err})
+	 	 	res.send({"success": "false"}, {"error": err})
 	 	 } else {
 	 	 	res.send("success": "true")
 	 	 }

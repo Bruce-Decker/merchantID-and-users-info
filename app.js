@@ -811,9 +811,11 @@ app.post('/updateDeviceToken', function(req, res) {
 	
 	device_data.find({userID: userID}, function(err, docs) {
 		if (docs) {
-			res.send({"success": "false"})
-		} else {
 			res.send(docs)
+			
+		} else {
+			res.send({"success": "false"})
+			
 		}
 	}) 
 })

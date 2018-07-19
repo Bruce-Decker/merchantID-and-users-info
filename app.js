@@ -605,6 +605,7 @@ function push(merchantID) {
     	userID: merchantID
     })
     .then(function(response) {
+    	res.send("Ok")
     	console.log(response)
     })
     .catch(function(error) {

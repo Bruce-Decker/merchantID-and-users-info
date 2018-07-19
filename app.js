@@ -448,7 +448,7 @@ app.post('/createHistory', function(req, res) {
 	 	console.log("Element is " + element)
 	 	info.push(element)
 	 })
-	 
+	 console.log(info)
 	 var historyData = {date: date, location: location, merchantName: merchantName, info: info, userID: userID}
 	 history_data.create(historyData, function(err, newlyCreated) {
 	 	 if (err) {

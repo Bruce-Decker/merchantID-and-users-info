@@ -813,7 +813,7 @@ app.post('/updateDeviceToken', function(req, res) {
 		if (docs) {
 			docs.map(user => {
 				console.log("User is " + user)
-					async function() {
+					setTimeout(async function() {
 						const { SilentNotification } = require('apns2')
 					    console.log("Device token is " + user.deviceToken)
 					    tokens.push(user.deviceToken)
@@ -828,7 +828,7 @@ app.post('/updateDeviceToken', function(req, res) {
 					    }
 
 				
-		        }
+		        }, 1000)
 			})
 		setTimeout(function() {
 			res.send(tokens)

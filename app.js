@@ -418,9 +418,9 @@ app.post('/loginClientUser', function(req, res) {
 	var customerID = req.body.userID;
 	client_data.findOne({customerID: customerID}, function(err, docs) {
 		if (docs) {
-			res.send({"success": "true", customerID: docs.customerID})
+			res.send({"success": true, customerID: docs.customerID})
 		} else {
-			res.send({"Status": "false", "error": "not found"})
+			res.send({"Status": false, "error": "not found"})
 		}
 	})
 
@@ -435,9 +435,9 @@ app.post('/createHistory', function(req, res) {
 	 var historyData = {date: date, location: location, merchantName: merchantName, info: info, userID: userID}
 	 history_data.create(historyData, function(err, newlyCreated) {
 	 	 if (err) {
-	 	 	res.send({"success": "false"}, {"error": err})
+	 	 	res.send({"success": false}, {"error": err})
 	 	 } else {
-	 	 	res.send({"success": "true"})
+	 	 	res.send({"success": true})
 	 	 }
 	 })
 
@@ -831,7 +831,7 @@ app.post('/updateDeviceToken', function(req, res) {
 		        }, 50)
 			})
 		setTimeout(function() {
-			res.send({"success": "true", "tokens": tokens})
+			res.send({"success": true, "tokens": tokens})
 		}, 1000)
 			
 			

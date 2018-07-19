@@ -101,9 +101,7 @@ var history_schema = mongoose.Schema({
 	date: String,
 	location: String,
 	merchantName: String,
-	info: [{
-        type: String
-    }]
+	info: [{}]
 })
 
 var configuration_schema = mongoose.Schema({
@@ -441,7 +439,13 @@ app.post('/createHistory', function(req, res) {
 	 var date = req.body.date;
 	 var location = req.body.location;
 	 var merchantName = req.body.merchantName;
-	 var info = req.body.info;
+	 //var info = req.body.info;
+	 var info = []
+	 var data = req.body
+	 data.forEach(function(element) {
+	 	console.log(element.info)
+	 })
+	 
 	 var historyData = {date: date, location: location, merchantName: merchantName, info: info, userID: userID}
 	 history_data.create(historyData, function(err, newlyCreated) {
 	 	 if (err) {

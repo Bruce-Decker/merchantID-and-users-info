@@ -10,6 +10,7 @@ const passport = require('passport');
 var fs = require('fs')
 var uuidv1 = require('uuid/v1');
 var http = require("http")
+var axios = require('axios')
 //Pings app every five minutes. Prevent it from going to sleep every five 
 /*
 setInterval(function() {

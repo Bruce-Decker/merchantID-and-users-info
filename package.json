@@ -13,6 +13,7 @@
     "apn": "^2.2.0",
     "apns2": "^5.0.0",
     "async-polling": "^0.2.1",
+    "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",

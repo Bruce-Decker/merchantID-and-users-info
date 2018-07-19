@@ -441,9 +441,9 @@ app.post('/createHistory', function(req, res) {
 	 var merchantName = req.body.merchantName;
 	 //var info = req.body.info;
 	 var info = []
-	 var data = req.body
+	 var data = req.body.info
 	 data.forEach(function(element) {
-	 	console.log(element.info)
+	 	console.log("Element is " + element)
 	 })
 	 
 	 var historyData = {date: date, location: location, merchantName: merchantName, info: info, userID: userID}

@@ -804,6 +804,20 @@ app.post('/saveDeviceToken', function(req, res) {
 	}) 
 })
 
+
+
+app.post('/updateDeviceToken', function(req, res) {
+	var userID = req.body.userID;
+	
+	device_data.find({userID: userID}, function(err, docs) {
+		if (docs) {
+			res.send({"success": "false"})
+		} else {
+			res.send(docs)
+		}
+	}) 
+})
+
 app.post('/push', async (req, res) => {
   var tempID = uuidv1();
   var deviceToken

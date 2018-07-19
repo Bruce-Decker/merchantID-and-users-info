@@ -832,7 +832,7 @@ app.post('/updateDeviceToken', function(req, res) {
 			})
 		setTimeout(function() {
 			res.send(tokens)
-		}, 2000)
+		}, 1000)
 			
 			
 		} else {

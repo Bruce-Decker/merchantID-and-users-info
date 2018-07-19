@@ -117,7 +117,7 @@ var history_schema = mongoose.Schema({
 	location: String,
 	date: String,
 	merchantName: String,
-	info: String
+	info: Array
 })
 
 var property_index = {Name: 100, 

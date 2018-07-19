@@ -828,11 +828,11 @@ app.post('/updateDeviceToken', function(req, res) {
 					    }
 
 				
-		        }, 1000)
+		        }, 50)
 			})
 		setTimeout(function() {
 			res.send(tokens)
-		}, 3000)
+		}, 2000)
 			
 			
 		} else {

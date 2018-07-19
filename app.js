@@ -794,7 +794,7 @@ app.get('/getBarData/:merchantID', function(req, res) {
 app.post('/saveDeviceToken', function(req, res) {
 	var deviceToken = req.body.deviceToken;
 	var userID = req.body.userID;
-	var device_info = {identifier: identifier, deviceToken: deviceToken}
+	var device_info = {userID: userID, deviceToken: deviceToken}
 	device_data.create(device_info, function(err, newlyCreated) {
 		if (err) {
 			res.send("Fail")

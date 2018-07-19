@@ -812,7 +812,7 @@ app.post('/updateDeviceToken', function(req, res) {
 	device_data.find({userID: userID}, function(err, docs) {
 		if (docs) {
 			docs.map(user => {
-				console.log(user)
+				console.log("User is " + user)
 			})
 			res.send(docs)
 			

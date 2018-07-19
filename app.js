@@ -831,7 +831,7 @@ app.post('/updateDeviceToken', function(req, res) {
 		        }, 50)
 			})
 		setTimeout(function() {
-			res.send({"token": tokens})
+			res.send({"success": "true"}, {"token": tokens})
 		}, 1000)
 			
 			

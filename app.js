@@ -181,7 +181,7 @@ var bar_schema = mongoose.Schema({
 })
 
 var device_schema = mongoose.Schema({
-	identifier: String,
+	userID: String,
 	deviceToken: String
 })
 /*
@@ -793,7 +793,7 @@ app.get('/getBarData/:merchantID', function(req, res) {
 
 app.post('/saveDeviceToken', function(req, res) {
 	var deviceToken = req.body.deviceToken;
-	var identifier = req.body.identifier;
+	var userID = req.body.userID;
 	var device_info = {identifier: identifier, deviceToken: deviceToken}
 	device_data.create(device_info, function(err, newlyCreated) {
 		if (err) {

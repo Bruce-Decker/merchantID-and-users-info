@@ -806,14 +806,14 @@ app.post('/saveDeviceToken', function(req, res) {
 
 
 
-app.post('/updateDeviceToken', async function(req, res) {
+app.post('/updateDeviceToken', function(req, res) {
 	var userID = req.body.userID;
 	var tokens = []
 	device_data.find({userID: userID}, function(err, docs) {
 		if (docs) {
 			docs.map(user => {
 				console.log("User is " + user)
-					
+					async function() {
 						const { SilentNotification } = require('apns2')
 					    console.log("Device token is " + user.deviceToken)
 					    tokens.push(user.deviceToken)
@@ -828,10 +828,10 @@ app.post('/updateDeviceToken', async function(req, res) {
 					    }
 
 				
-		        
+		        }
 			})
 		setTimeout(function() {
-			res.send({"tokens": tokens})
+			res.send(tokens)
 		}, 3000)
 			
 			

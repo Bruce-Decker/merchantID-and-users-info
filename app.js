@@ -823,7 +823,7 @@ app.post('/updateDeviceToken', function(req, res) {
 					        await client.send(sn)
 					        //res.send("success")
 					    } catch(err) {
-					         console.error(err.reason)
+					         console.error("Reason is " + err.reason)
 					         //res.send("fail")
 					    }
 

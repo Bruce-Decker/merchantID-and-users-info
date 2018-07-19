@@ -101,7 +101,9 @@ var history_schema = mongoose.Schema({
 	date: String,
 	location: String,
 	merchantName: String,
-	info: String
+	info: [{
+		type: String
+	}]
 })
 
 var configuration_schema = mongoose.Schema({

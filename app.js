@@ -405,13 +405,20 @@ app.post('/createClientUser', function(req, res) {
      var identity = req.body.identity;
      var customerID = uuidv1();
      var clientData = {identity: identity, customerID: customerID}
-	 client_data.create(clientData, function(err, newlyCreated) {
-	 	 if (err) {
-	 	 	res.status(404).json(err)
-	 	 } else {
-	 	 	res.send({"customerID": customerID})
-	 	 }
-	 })
+     client_data.findOne({identity: identity}, function(err, docs) {
+     	 if (docs) {
+     	 	res.send({"Error": "User already exists"})
+     	 } else {
+     	 	   client_data.create(clientData, function(err, newlyCreated) {
+			 	 if (err) {
+			 	 	res.status(404).json(err)
+			 	 } else {
+			 	 	res.send({"customerID": customerID})
+			 	 }
+	          })
+
+     	 }
+     })
 })
 
 app.post('/loginClientUser', function(req, res) {

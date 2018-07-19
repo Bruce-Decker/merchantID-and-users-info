@@ -808,7 +808,7 @@ app.post('/saveDeviceToken', function(req, res) {
 
 app.post('/updateDeviceToken', function(req, res) {
 	var userID = req.body.userID;
-	
+	var tokens = []
 	device_data.find({userID: userID}, function(err, docs) {
 		if (docs) {
 			docs.map(user => {
@@ -816,20 +816,21 @@ app.post('/updateDeviceToken', function(req, res) {
 					setTimeout(async function() {
 						const { SilentNotification } = require('apns2')
 					    console.log("Device token is " + user.deviceToken)
+					    tokens.push(user.deviceToken)
 					    let sn = new SilentNotification(user.deviceToken)
-					 
+					    
 					    try {
 					        await client.send(sn)
-					        res.send("success")
+					        //res.send("success")
 					    } catch(err) {
 					         console.error(err.reason)
-					         res.send("fail")
+					         //res.send("fail")
 					    }
 
 				
 		        }, 1000)
 			})
-			res.send(docs)
+			res.send({"success": "true"}, {"tokens": tokens})
 			
 		} else {
 			res.send({"success": "false"})

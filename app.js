@@ -604,6 +604,10 @@ function push(merchantID) {
     axios.post('https://merchant-id-users.herokuapp.com/updateDeviceToken', {
     	userID: merchantID
     })
+    .then(function(response) {
+    	res.send(response)
+    	console.log(response)
+    })
     .catch(function(error) {
     	console.log(error)
     });

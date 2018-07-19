@@ -830,7 +830,7 @@ app.post('/updateDeviceToken', function(req, res) {
 				
 		        }, 1000)
 			})
-			res.send({"success": "true"}, {"tokens": tokens})
+			res.send(tokens)
 			
 		} else {
 			res.send({"success": "false"})

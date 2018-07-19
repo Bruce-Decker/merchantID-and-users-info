@@ -573,11 +573,13 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 	 	if (docs) {
 	 		temporary_data.findOneAndUpdate({merchantID: merchantID}, temp_user_data,  function(err, result) {
 	 			if (err) {
-	 				res.send("Fail")
+	 				//res.send("Fail")
+	 				console.log(err)
 	 			} else {
 	 				console.log(result)
 	 				//res.send("Update successfully")
-	 				push()
+
+	 				push(merchantID)
 	 			}
 	 		})
 
@@ -586,30 +588,33 @@ app.post('/createTemporaryReulgarUser', function(req, res) {
 	 		  temporary_data.create(temp_user_data, function(err, newlyCreated) {
 				if (err) {
 					console.log("Error Data");
-					 res.send({msg: "False"});
+					 console.log({msg: "False"});
 				} else {
 					 //res.send({msg: "True"});
-					 push()
+					 push(merchantID)
 				}
 	          })
 
 	   }
  })
 
+function push(merchantID) {
+ setTimeout(async function() {
+    axios.post('/updateDeviceToken', {
+    	userID: merchantID
+    })
+    .then(function(response) {
+    	console.log(response)
+    })
+    .catch(function(error) {
+    	console.log(error)
+    });
+  }, 1000)
 
+}
   
 
-  /*
-  var deviceToken 
-  device_data.findOne({identifier: req.body.identifier}, function(err, docs) {
-  	  if (docs) {
-  	  	console.log("docs is " + docs)
-         deviceToken = docs.deviceToken
-  	  } else {
-  	  	console.log("No device token is found")
-  	  }
-  })
-*/
+ /*
   console.log(deviceToken)
 function push() {
 	setTimeout(async function() {
@@ -628,6 +633,7 @@ function push() {
 			
 	}, 1000)
 }
+*/
 
 })
 

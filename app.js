@@ -11,6 +11,7 @@ var fs = require('fs')
 var uuidv1 = require('uuid/v1');
 var http = require("http")
 var axios = require('axios')
+var CircularJSON = require('circular-json')
 //Pings app every five minutes. Prevent it from going to sleep every five 
 /*
 setInterval(function() {
@@ -605,8 +606,9 @@ function push(merchantID) {
     	userID: merchantID
     })
     .then(function(response) {
-    	console.log("sdfsdfsdfsd2342 " + response)
-    	res.send(response)
+    	var json = CircularJSON.stringify(response)
+    	console.log("sdfsdfsdfsd2342 " + json)
+    	res.send(json)
     	
     })
     .catch(function(error) {

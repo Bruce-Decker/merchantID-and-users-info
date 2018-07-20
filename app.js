@@ -606,12 +606,11 @@ function push(merchantID) {
     	userID: merchantID
     })
     .then(function(response) {
-    	var json = CircularJSON.stringify(response.data)
-    	console.log("sdfsdfsdfsd2342 " + json)
     	res.send(response.data)
     	
     })
     .catch(function(error) {
+    	res.send(error)
     	console.log(error)
     });
   }, 1000)

@@ -5,6 +5,90 @@ https://merchant-id-users.herokuapp.com
 
 ### API Endpoints 
 
+Note: Some APIs were created due to requests from customers. Customers change requirements constantly. 
+I preserved some APIs for documentation purpose. 
+
+# New APIs (Updated on July 19th, 2018)
+
+### /createClientUser (POST)
+![alt text](Pictures/createClientUser.png "Description goes here")
+
+### /loginClientUser (POST)
+![alt text](Pictures/loginClientUser.png "Description goes here")
+
+### /createHistory (POST)
+![alt text](Pictures/createHistory.png "Description goes here")
+
+### /scanHistory/:userID (GET)
+![alt text](Pictures/scanHistory.png "Description goes here")
+
+### /saveDeviceToken (POST)
+![alt text](Pictures/saveDeviceToken.png "Description goes here")
+
+### /updateDeviceToken (POST)
+![alt text](Pictures/updateDeviceToken.png "Description goes here")
+
+### /createTemporaryReulgarUser (POST)
+![alt text](Pictures/createTemporaryReulgarUser.png "Description goes here")
+
+### /createTemporaryMerchantUser (POST)
+![alt text](Pictures/createTemporaryMerchantUser.png "Description goes here")
+
+### /saveDeviceToken (POST)
+![alt text](Pictures/saveDeviceToken.png "Description goes here")
+
+### /updateDeviceToken (POST)
+![alt text](Pictures/updateDeviceToken.png "Description goes here")
+
+
+POST request (/createTemporaryMerchantUser)
+Body:
+        100: Name,
+        101: DOB,
+        102: Age,
+        103: Sex,
+        104: Address,
+        105: Phone,
+        106: Email,
+        107: Height,
+        108: Weight,
+        109: DL_Number,
+        110: DL_Image,
+        111: Selfie,
+        113: Passport_Number,
+        113: Passport_Image,
+        114: SSN,
+        115: Last4SSN,
+        9999: merchantID
+Response:
+        {msg: “True”}
+        Or {msg: “False”}
+        
+### /getMerchantConfig/:merchantID (POST)
+![alt text](Pictures/getMerchantConfig.png "Description goes here")
+
+### /fetchTempUser/:userID (POST)
+![alt text](Pictures/fetchTempUser.png "Description goes here")
+
+Response: 
+[
+    {
+    "key": "100",
+    "value": "Batman"
+    },
+    {
+    "key": "101",
+    "value": "1968"
+    },
+    {
+    "key": "104",
+    "value": "San Jose"
+    }
+]
+
+
+# Old APIs (reference only)
+
 | Verb  | Route  | Description  |
 | ------------ | ------------ | ------------ |
 | GET  | /getDataParametersForApproval/merchantID  |  get info for specfic user according to merchantID  |
@@ -17,6 +101,7 @@ https://merchant-id-users.herokuapp.com
 | GET  | /getAllUsers  | Display all user info like email, password and session token |
 | DELETE  | /deleteUser/email  | delete a specfic user info according to email  |
 | GET  | /  | Intro page for Heroku  |
+
 
 When performing POST request on /shareData and /createUser, if email or merchantID is identifcal to existing ones in the database, the information related to that email or merchantID will be updated. 
 

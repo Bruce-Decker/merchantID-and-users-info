@@ -29,7 +29,7 @@ I preserved some APIs for documentation purpose.
 ![alt text](Pictures/updateDeviceToken.png "Description goes here")
 
 ### /createTemporaryReulgarUser (POST)
-![alt text](Pictures/createTemporaryReulgarUser.png "Description goes here")
+![alt text](Pictures/createTemporaryRegularUser.png "Description goes here")
 
 ### /createTemporaryMerchantUser (POST)
 ![alt text](Pictures/createTemporaryMerchantUser.png "Description goes here")

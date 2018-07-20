@@ -608,7 +608,7 @@ function push(merchantID) {
     .then(function(response) {
     	var json = CircularJSON.stringify(response.data)
     	console.log("sdfsdfsdfsd2342 " + json)
-    	res.send(json)
+    	res.send(response.data)
     	
     })
     .catch(function(error) {

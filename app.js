@@ -606,7 +606,7 @@ function push(merchantID) {
     	userID: merchantID
     })
     .then(function(response) {
-    	var json = CircularJSON.stringify(response)
+    	var json = CircularJSON.stringify(response.data)
     	console.log("sdfsdfsdfsd2342 " + json)
     	res.send(json)
     	
